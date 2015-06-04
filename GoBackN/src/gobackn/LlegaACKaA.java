@@ -9,6 +9,30 @@ package gobackn;
  *
  * @author b06171
  */
-public class LlegaACKaA {
+public class LlegaACKaA extends Evento {
+
+   private static LlegaACKaA instance = null;
+   protected LlegaACKaA() {
+      
+   }
+   public static LlegaACKaA getInstance() {
+      if(instance == null) {
+         instance = new LlegaACKaA();
+      }
+      return instance;
+   }
+    @Override
+    public double getHoraOcurrencia() {
+        return horaOcurrencia;
+    }
+
+    @Override
+    public double setHoraOcurrencia(int val) {
+        return horaOcurrencia=val;
+    }
+
+    @Override
+    public void ejecutar() {
+    }
     
 }
