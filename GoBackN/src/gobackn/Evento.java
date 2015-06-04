@@ -12,4 +12,5 @@ package gobackn;
 public interface Evento {
     double horaOcurrencia = Double.MAX_VALUE;
     void ejecutar();
+    //lalolanda
 }
