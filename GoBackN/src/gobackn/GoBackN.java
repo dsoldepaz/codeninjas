@@ -11,15 +11,20 @@ package gobackn;
  */
 public class GoBackN {
 
+    InterfazUsuario interfaz;
     public static void main(String[] args) {
-        /*InterfazUsuario interfaz = new InterfazUsuario(this);
+       GoBackN simulacion = new GoBackN();
+    }
+    GoBackN(){
+        interfaz = new InterfazUsuario(this);
         interfaz.setLocationRelativeTo(null);
-        interfaz.setVisible(true);       */ 
+        interfaz.setVisible(true);
+        interfaz.imprimir("Escriba los parametros de simulación y luego presione iniciar");
     }
     public void iniciar(double tTimer, double tMax){
+        interfaz.limpiar();
+        interfaz.imprimir("tTimer: "+Double.toString(tTimer));
+        interfaz.imprimirL("tMax: "+Double.toString(tMax));
         
     }
-
-    
-    
 }
