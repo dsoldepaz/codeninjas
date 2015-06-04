@@ -9,6 +9,30 @@ package gobackn;
  *
  * @author b06171
  */
-public class LiberaB {
+public class LiberaB extends Evento {
+
+   private static LiberaB instance = null;
+   protected LiberaB() {
+      
+   }
+   public static LiberaB getInstance() {
+      if(instance == null) {
+         instance = new LiberaB();
+      }
+      return instance;
+   }
+    @Override
+    public double getHoraOcurrencia() {
+        return horaOcurrencia;
+    }
+
+    @Override
+    public double setHoraOcurrencia(int val) {
+        return horaOcurrencia=val;
+    }
+
+    @Override
+    public void ejecutar() {
+    }
     
 }

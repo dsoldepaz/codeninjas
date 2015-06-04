@@ -9,6 +9,30 @@ package gobackn;
  *
  * @author b06171
  */
-public class LlegaFrameB {
+public class LlegaFrameB extends Evento {
+
+   private static LlegaFrameB instance = null;
+   protected LlegaFrameB() {
+      
+   }
+   public static LlegaFrameB getInstance() {
+      if(instance == null) {
+         instance = new LlegaFrameB();
+      }
+      return instance;
+   }
+    @Override
+    public double getHoraOcurrencia() {
+        return horaOcurrencia;
+    }
+
+    @Override
+    public double setHoraOcurrencia(int val) {
+        return horaOcurrencia=val;
+    }
+
+    @Override
+    public void ejecutar() {
+    }
     
 }

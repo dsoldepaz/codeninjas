@@ -9,7 +9,10 @@ package gobackn;
  *
  * @author b06171
  */
-public interface Evento {
-    double horaOcurrencia = Double.MAX_VALUE;
-    void ejecutar();    
+public abstract class Evento {
+    protected double horaOcurrencia = Double.MAX_VALUE;
+    public abstract double getHoraOcurrencia();
+    public abstract double setHoraOcurrencia(int val);
+    public abstract void ejecutar();
+    //lalolanda
 }
