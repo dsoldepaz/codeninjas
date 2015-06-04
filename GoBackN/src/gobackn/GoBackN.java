@@ -15,7 +15,10 @@ public class GoBackN {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        InterfazUsuario interfaz = new InterfazUsuario();
+        interfaz.setLocationRelativeTo(null);
+        interfaz.setVisible(true);
+        
     }
     
 }
