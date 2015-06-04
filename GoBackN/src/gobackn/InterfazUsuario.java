@@ -10,12 +10,16 @@ package gobackn;
  * @author b06171
  */
 public class InterfazUsuario extends javax.swing.JFrame {
-
-    /**
-     * Creates new form InterfazUsuario
-     */
-    public InterfazUsuario() {
+    GoBackN padre;
+    public InterfazUsuario(GoBackN p) {
+        padre = p;
         initComponents();
+    }
+    public void imprimir(String texto){
+        jTextArea1.append(texto);
+    }
+    public void limpiar(String texto){
+        jTextArea1.setText("");
     }
 
     /**
@@ -146,7 +150,9 @@ public class InterfazUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        double tTimer= (Double)(jSpinner1.getValue());
+        double tMax= (Double)(jSpinner2.getValue());
+        padre.iniciar(tTimer, tMax);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

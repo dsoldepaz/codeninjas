@@ -11,14 +11,15 @@ package gobackn;
  */
 public class GoBackN {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        InterfazUsuario interfaz = new InterfazUsuario();
+        /*InterfazUsuario interfaz = new InterfazUsuario(this);
         interfaz.setLocationRelativeTo(null);
-        interfaz.setVisible(true);
+        interfaz.setVisible(true);       */ 
+    }
+    public void iniciar(double tTimer, double tMax){
         
     }
+
+    
     
 }
