@@ -7,15 +7,8 @@ package gobackn;
 
 /**
  *
- * @author bana
+ * @author b06171
  */
-public class GoBackN {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class LlegaACKaA {
     
 }
