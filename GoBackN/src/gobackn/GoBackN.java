@@ -27,24 +27,13 @@ public class GoBackN {
     }
 
     public void Simular(double tTimer, double tMax) {
-        inicializar(tMax);
+        interfaz.limpiar();
+        reloj = 0;
+
         while (reloj < tMax) {
             reloj++;
         }
         interfaz.imprimirL("Fin de la simulación.");
-    }
-
-    private void inicializar(double tMax) {
-        interfaz.limpiar();
-        GoBackN.tMax = tMax;
-        GoBackN.reloj = 0;
-        
-        LlegaMsjA llegaMsjA = new LlegaMsjA();
-        LiberaA liberaA = new LiberaA();
-        LlegaFrameB llegaFrameB = new LlegaFrameB();
-        LiberaB liberaB = new LiberaB();
-        LlegaACKaA llegaACKaA = new LlegaACKaA();
-        VenceTimer venceTimer = new VenceTimer();
     }
 
 }
