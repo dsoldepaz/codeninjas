@@ -33,5 +33,4 @@ public class GoBackN {
         }
         interfaz.imprimirL("Fin de la simulación.");
     }
-
 }
