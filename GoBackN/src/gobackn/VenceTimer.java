@@ -11,16 +11,19 @@ package gobackn;
  */
 public class VenceTimer extends Evento {
 
-   private static VenceTimer instance = null;
-   protected VenceTimer() {
-      
-   }
-   public static VenceTimer getInstance() {
-      if(instance == null) {
-         instance = new VenceTimer();
-      }
-      return instance;
-   }
+    private static VenceTimer instance = null;
+
+    protected VenceTimer() {
+
+    }
+
+    public static VenceTimer getInstance() {
+        if (instance == null) {
+            instance = new VenceTimer();
+        }
+        return instance;
+    }
+
     @Override
     public double getHoraOcurrencia() {
         return horaOcurrencia;
@@ -28,12 +31,13 @@ public class VenceTimer extends Evento {
 
     @Override
     public double setHoraOcurrencia(int val) {
-        return horaOcurrencia=val;
+        return horaOcurrencia = val;
     }
 
     @Override
     public void ejecutar() {
+        GoBackN.reloj = horaOcurrencia;
+        
     }
-    
-}
 
+}

@@ -29,6 +29,8 @@ public class GoBackN {
         //Inicializar variables
         interfaz.limpiar();
         reloj = 0;
+        boolean enviadorLibre= true;
+        
         Evento[] evento = {LlegaMsjA.getInstance(), LiberaA.getInstance(), LiberaB.getInstance(), LlegaACKaA.getInstance(), LlegaFrameB.getInstance(), VenceTimer.getInstance()};
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
         Evento actual = evento[0];
