@@ -25,21 +25,22 @@ public class GoBackN {
     }
 
     public void Simular(double tTimer, double tMax) {
-        interfaz.limpiar();
+        
         //Inicializar variables
+        interfaz.limpiar();
         reloj = 0;
         Evento[] evento = {LlegaMsjA.getInstance(), LiberaA.getInstance(), LiberaB.getInstance(), LlegaACKaA.getInstance(), LlegaFrameB.getInstance(), VenceTimer.getInstance()};
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
-
+        Evento actual = evento[0];
+        
         //ciclo de simulación
         while (reloj < tMax) {
             //escoger el próximo evento
-            Evento actual = evento[0];
-            for (Evento e : evento) {                
-                if(e.getHoraOcurrencia()<actual.getHoraOcurrencia()){
-                    actual=e;
+            for (Evento e : evento) {
+                if (e.getHoraOcurrencia() < actual.getHoraOcurrencia()) {
+                    actual = e;
                 }
-            }
+            }            
             //ejecutar el evento
             actual.ejecutar();
             reloj++;//solo para probar interfaz
