@@ -11,9 +11,11 @@ package gobackn;
  */
 public class InterfazUsuario extends javax.swing.JFrame {
     GoBackN padre;
-    public InterfazUsuario(GoBackN p) {
-        padre = p;
+    public InterfazUsuario(GoBackN p) {        
         initComponents();
+        padre = p;
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
     public void imprimirL(String texto){
         jTextArea1.append("\n"+texto);

@@ -16,20 +16,18 @@ public class GoBackN {
     public static double tMax;
 
     public static void main(String[] args) {
-        GoBackN simulacion = new GoBackN();
+        new GoBackN();
     }
 
     GoBackN() {
         interfaz = new InterfazUsuario(this);
-        interfaz.setLocationRelativeTo(null);
-        interfaz.setVisible(true);
         interfaz.imprimir("Escriba los parametros de simulación y luego presione iniciar");
     }
 
     public void Simular(double tTimer, double tMax) {
         interfaz.limpiar();
         reloj = 0;
-
+        
         while (reloj < tMax) {
             reloj++;
         }
