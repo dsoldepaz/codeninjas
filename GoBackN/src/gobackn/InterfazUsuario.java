@@ -168,7 +168,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         double tTimer= Double.parseDouble(jTextField1.getText());
         double tMax= Double.parseDouble(jTextField2.getText());
-        padre.iniciarSimulacion(tTimer, tMax);
+        padre.Simular(tTimer, tMax);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

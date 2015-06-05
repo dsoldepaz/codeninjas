@@ -10,36 +10,41 @@ package gobackn;
  * @author bana
  */
 public class GoBackN {
+
     public static InterfazUsuario interfaz;
     public static double reloj;
     public static double tMax;
-    
+
     public static void main(String[] args) {
-       GoBackN simulacion = new GoBackN();
+        GoBackN simulacion = new GoBackN();
     }
-    GoBackN(){
+
+    GoBackN() {
         interfaz = new InterfazUsuario(this);
         interfaz.setLocationRelativeTo(null);
         interfaz.setVisible(true);
         interfaz.imprimir("Escriba los parametros de simulación y luego presione iniciar");
     }
-    public void iniciarSimulacion(double tTimer, double tMax){
-        inicializar(tTimer,tMax);
-        
-        while(reloj<tMax){
+
+    public void Simular(double tTimer, double tMax) {
+        inicializar(tMax);
+        while (reloj < tMax) {
             reloj++;
         }
-        
+        interfaz.imprimirL("Fin de la simulación.");
     }
-    private void inicializar(double tTimer, double tMax){
+
+    private void inicializar(double tMax) {
         interfaz.limpiar();
-        interfaz.imprimir("Inicializando variables...");
+        GoBackN.tMax = tMax;
+        GoBackN.reloj = 0;
+        
         LlegaMsjA llegaMsjA = new LlegaMsjA();
         LiberaA liberaA = new LiberaA();
         LlegaFrameB llegaFrameB = new LlegaFrameB();
         LiberaB liberaB = new LiberaB();
         LlegaACKaA llegaACKaA = new LlegaACKaA();
         VenceTimer venceTimer = new VenceTimer();
-        
     }
+
 }
