@@ -33,6 +33,7 @@ public class LlegaMsjA extends Evento {
 
     @Override
     public void ejecutar() {
+        
     }
     
 }

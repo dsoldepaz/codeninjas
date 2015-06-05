@@ -18,7 +18,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
         setVisible(true);
     }
     public void imprimirL(String texto){
-        jTextArea1.append("\n"+texto);
+        jTextArea1.append(texto+"\n");
     }
     public void imprimir(String texto){
         jTextArea1.append(texto);
@@ -194,10 +194,10 @@ public class InterfazUsuario extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         limpiar();
-        imprimir("Universidad de Costa Rica");
+        imprimirL("Universidad de Costa Rica");
         imprimirL("Escuela de ciencias de la computación e informática");
         imprimirL("Proyecto de Investigación de operaciones: Simulación del protocolo Go Back N");
-        imprimirL("Creado por David y Fernando");
+        imprimirL("Creado por David Solís y Fernando Mata");
         imprimirL("---");
         imprimirL("Escriba los parametros de simulación y luego presione iniciar");
     }//GEN-LAST:event_jButton2ActionPerformed

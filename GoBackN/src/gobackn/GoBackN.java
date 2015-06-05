@@ -21,16 +21,30 @@ public class GoBackN {
 
     GoBackN() {
         interfaz = new InterfazUsuario(this);
-        interfaz.imprimir("Escriba los parametros de simulación y luego presione iniciar");
+        interfaz.imprimirL("Escriba los parametros de simulación y luego presione iniciar");
     }
 
     public void Simular(double tTimer, double tMax) {
         interfaz.limpiar();
+        //Inicializar variables
         reloj = 0;
-        
+        Evento[] evento = {LlegaMsjA.getInstance(), LiberaA.getInstance(), LiberaB.getInstance(), LlegaACKaA.getInstance(), LlegaFrameB.getInstance(), VenceTimer.getInstance()};
+        LlegaMsjA.getInstance().setHoraOcurrencia(0);
+
+        //ciclo de simulación
         while (reloj < tMax) {
-            reloj++;
+            //escoger el próximo evento
+            Evento actual = evento[0];
+            for (Evento e : evento) {                
+                if(e.getHoraOcurrencia()<actual.getHoraOcurrencia()){
+                    actual=e;
+                }
+            }
+            //ejecutar el evento
+            actual.ejecutar();
+            reloj++;//solo para probar interfaz
         }
-        interfaz.imprimirL("Fin de la simulación.");
+        //calcular estadísticas        
+        interfaz.imprimirL("Fin");
     }
 }
