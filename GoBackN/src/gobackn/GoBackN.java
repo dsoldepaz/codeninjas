@@ -113,9 +113,6 @@ public class GoBackN {
         interfaz.printL("Reloj: "+ reloj);
         interfaz.printL("Longitud cola A: "+ colaA.size());        
         interfaz.printL("Mensajes en cola A: {");
-        for(){
-            
-        }
         interfaz.printL("Último ACK recibido en A: ");
         interfaz.printL("Último ACK enviado por B: ");
         interfaz.printL("Total de frames recibidos por B: " + colaB.size());
