@@ -20,51 +20,34 @@ import java.util.logging.Logger;
  */
 public class GoBackN {
 
-    public static double reloj;
-    public static double tMax;
-    public static double tTimer;
-    public static double[] timer;
+    public double reloj;
+    public double tMax;
+    public double tTimer;
+    public double[] timer;
     List<Mensaje> colaA;
     List<Mensaje> ventana;
     List<Mensaje> colaEnviador;
     List<Mensaje> colaB;
-    public static boolean aLibre;
-    public static boolean bLibre;
-    public static int ultimoACKRecibido;
-    public static int ultimoACKEnviado;
+    public boolean aLibre;
+    public boolean bLibre;
+    public int ultimoACKRecibido;
+    public int ultimoACKEnviado;
     Evento[] evento;
     Evento actual;
-    Interfaz interfaz;
-
+    private static GoBackN instance = null;
+    
     public static void main(String[] args) {
-        new GoBackN(1, 11, 111, true);//corre la simulación 1 vez, con timer 11 y tiempo maximo 111, en modo lento
+        GoBackN gbn = GoBackN.getInstance();
+        gbn.simular(1,1,1);
     }
-
-    GoBackN(int veces, double tTimer, double tMax, boolean modoLento) {
-        for (int i = 0; i < veces; i++) {
-            inicializar(tTimer, tMax);
-            while (reloj < tMax) {
-                //escoger el próximo evento
-                for (Evento e : evento) {
-                    if (e.getHoraOcurrencia() < actual.getHoraOcurrencia()) {
-                        actual = e;
-                    }
-                }
-                //ejecutar el evento
-                actual.ejecutar();
-                reloj++;//solo para probar
-                //actualizar estado
-                actualizarEstado(modoLento);
-            }
-            //guardar estadisticas de esta simulación
-
-        }
-        //imprimir estadisticas de todas
-
-    }
-
-    public void inicializar(double tTimer, double tMax) {
-        //Inicializar variables
+    
+    public static GoBackN getInstance() {
+      if(instance == null) {
+         instance = new GoBackN();
+      }
+      return instance;
+   }
+    protected GoBackN() {
         reloj = 0;
         aLibre = true;
         bLibre = true;
@@ -92,32 +75,33 @@ public class GoBackN {
             e.setHoraOcurrencia(Double.MAX_VALUE);
         }
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
-        actual = evento[0];
-        interfaz = new Interfaz(); 
-        interfaz.setVisible(true);
+        actual = evento[0];    
     }
-
-    void actualizarEstado(boolean modoLento) {
-        if (modoLento) {
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(GoBackN.class.getName()).log(Level.SEVERE, null, ex);
+    public void simular (int veces, double tTimer, double tMax){
+        for (int i = 0; i < veces; i++) {
+            //inicializar(tTimer, tMax);
+            while (reloj < tMax) {
+                //escoger el próximo evento
+                for (Evento e : evento) {
+                    if (e.getHoraOcurrencia() < actual.getHoraOcurrencia()) {
+                        actual = e;
+                    }
+                }
+                //ejecutar el evento
+                actual.ejecutar();
+                reloj++;//solo para probar
+                //actualizar estado
+                actualizarEstado();
             }
+            //guardar estadisticas de esta simulación
+            
         }
-            for (int i = 0; i < 50; i++) {
-                System.out.println();
-            }
-        interfaz.limpiar();
-        interfaz.printL("Simulación: #");
-        interfaz.printL("Reloj: "+ reloj);
-        interfaz.printL("Longitud cola A: "+ colaA.size());        
-        interfaz.printL("Mensajes en cola A: {");
-        interfaz.printL("Último ACK recibido en A: ");
-        interfaz.printL("Último ACK enviado por B: ");
-        interfaz.printL("Total de frames recibidos por B: " + colaB.size());
-        interfaz.printL("Últimos frames recibidos por B: ");
-        interfaz.printL("Tipo de evento procesado: ");
+        //imprimir estadisticas de todas
+
+    }
+    
+    void actualizarEstado(){
+        System.out.println(reloj);
     }
 
 }
