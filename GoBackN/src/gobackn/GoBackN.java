@@ -14,50 +14,34 @@ import java.util.List;
  */
 public class GoBackN {
 
-    public static double reloj;
-    public static double tMax;
-    public static double tTimer;
-    public static double[] timer;
+    public double reloj;
+    public double tMax;
+    public double tTimer;
+    public double[] timer;
     List<Mensaje> colaA;
     List<Mensaje> ventana;
     List<Mensaje> colaEnviador;
     List<Mensaje> colaB;
-    public static boolean aLibre;
-    public static boolean bLibre;
-    public static int ultimoACKRecibido;
-    public static int ultimoACKEnviado;
+    public boolean aLibre;
+    public boolean bLibre;
+    public int ultimoACKRecibido;
+    public int ultimoACKEnviado;
     Evento[] evento;
     Evento actual;
-
+    private static GoBackN instance = null;
+    
     public static void main(String[] args) {
-        new GoBackN(1, 1, 1);
+        GoBackN gbn = GoBackN.getInstance();
+        gbn.simular(1,1,1);
     }
-
-    GoBackN(int veces, double tTimer, double tMax) {
-        for (int i = 0; i < veces; i++) {
-            inicializar(tTimer, tMax);
-            while (reloj < tMax) {
-                //escoger el próximo evento
-                for (Evento e : evento) {
-                    if (e.getHoraOcurrencia() < actual.getHoraOcurrencia()) {
-                        actual = e;
-                    }
-                }
-                //ejecutar el evento
-                actual.ejecutar();
-                reloj++;//solo para probar
-                //actualizar estado
-                actualizarEstado();
-            }
-            //guardar estadisticas de esta simulación
-            
-        }
-        //imprimir estadisticas de todas
-
-    }
-
-    public void inicializar(double tTimer, double tMax) {
-        //Inicializar variables
+    
+    public static GoBackN getInstance() {
+      if(instance == null) {
+         instance = new GoBackN();
+      }
+      return instance;
+   }
+    protected GoBackN() {
         reloj = 0;
         aLibre = true;
         bLibre = true;
@@ -85,8 +69,31 @@ public class GoBackN {
             e.setHoraOcurrencia(Double.MAX_VALUE);
         }
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
-        actual = evento[0];
+        actual = evento[0];    
     }
+    public void simular (int veces, double tTimer, double tMax){
+        for (int i = 0; i < veces; i++) {
+            //inicializar(tTimer, tMax);
+            while (reloj < tMax) {
+                //escoger el próximo evento
+                for (Evento e : evento) {
+                    if (e.getHoraOcurrencia() < actual.getHoraOcurrencia()) {
+                        actual = e;
+                    }
+                }
+                //ejecutar el evento
+                actual.ejecutar();
+                reloj++;//solo para probar
+                //actualizar estado
+                actualizarEstado();
+            }
+            //guardar estadisticas de esta simulación
+            
+        }
+        //imprimir estadisticas de todas
+
+    }
+    
     void actualizarEstado(){
         System.out.println(reloj);
     }

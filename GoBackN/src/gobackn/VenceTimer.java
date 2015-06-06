@@ -29,7 +29,7 @@ public class VenceTimer extends Evento {
     }
     @Override
     public void ejecutar() {
-        GoBackN.reloj = horaOcurrencia;
+        //GoBackN.reloj = horaOcurrencia;
         
     }
 
