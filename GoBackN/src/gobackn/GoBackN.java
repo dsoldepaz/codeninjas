@@ -7,6 +7,8 @@ package gobackn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,10 +32,10 @@ public class GoBackN {
     Evento actual;
 
     public static void main(String[] args) {
-        new GoBackN(1, 1, 1);
+        new GoBackN(1, 11, 111, true);//corre la simulación 1 vez, con timer 11 y tiempo maximo 111, en modo lento
     }
 
-    GoBackN(int veces, double tTimer, double tMax) {
+    GoBackN(int veces, double tTimer, double tMax, boolean modoLento) {
         for (int i = 0; i < veces; i++) {
             inicializar(tTimer, tMax);
             while (reloj < tMax) {
@@ -47,7 +49,7 @@ public class GoBackN {
                 actual.ejecutar();
                 reloj++;//solo para probar
                 //actualizar estado
-                actualizarEstado();
+                actualizarEstado(modoLento);
             }
             //guardar estadisticas de esta simulación
             
@@ -87,7 +89,14 @@ public class GoBackN {
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
         actual = evento[0];
     }
-    void actualizarEstado(){
+    void actualizarEstado(boolean modoLento){
+        if(modoLento){
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GoBackN.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         System.out.println(reloj);
     }
 
