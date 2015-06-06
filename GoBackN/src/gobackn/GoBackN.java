@@ -31,8 +31,7 @@ public class GoBackN {
         interfaz.imprimirL("Escriba los parametros de simulación y luego presione iniciar");
     }
 
-    public void Simular(double tTimer, double tMax) {
-        
+    public void Simular(double tTimer, double tMax) {        
         //Inicializar variables
         interfaz.limpiar();
         reloj = 0;
@@ -57,8 +56,9 @@ public class GoBackN {
             //ejecutar el evento
             actual.ejecutar();
             reloj++;//solo para probar interfaz
-        }
+        }        
         //calcular estadísticas        
         interfaz.imprimirL("Fin");
     }
+    
 }
