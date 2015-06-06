@@ -34,5 +34,8 @@ public class LlegaFrameB extends Evento {
     @Override
     public void ejecutar() {
     }
-    
+        @Override
+    public String getNombre() {
+        return "Llega frame a B";
+    }
 }

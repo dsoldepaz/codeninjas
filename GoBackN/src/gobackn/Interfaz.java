@@ -20,7 +20,7 @@ public class Interfaz extends javax.swing.JFrame {
     public void printL(String txt){
         jTextArea1.append(txt+"\n");
     }
-    public void printt(String txt){
+    public void printT(String txt){
         jTextArea1.append(txt);
     }
     public void limpiar(){
@@ -63,7 +63,7 @@ public class Interfaz extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

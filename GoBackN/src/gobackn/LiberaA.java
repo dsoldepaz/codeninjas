@@ -17,7 +17,7 @@ public class LiberaA extends Evento {
    private VenceTimer venceTimer;
    protected LiberaA() {
       distribuidor  = Distribuidor.getInstance();
-      master = GoBackN.getInstance();
+     // master = GoBackN.getInstance();
       venceTimer = VenceTimer.getInstance();
    }
    public static LiberaA getInstance() {
@@ -48,6 +48,10 @@ public class LiberaA extends Evento {
             
             //poner el timer
          }
+    }
+    @Override
+    public String getNombre() {
+        return "Se libera A";
     }
     
 }

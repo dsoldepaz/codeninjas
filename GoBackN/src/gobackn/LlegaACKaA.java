@@ -34,5 +34,9 @@ public class LlegaACKaA extends Evento {
     @Override
     public void ejecutar() {
     }
+        @Override
+    public String getNombre() {
+        return "Llega ACK a A";
+    }
     
 }

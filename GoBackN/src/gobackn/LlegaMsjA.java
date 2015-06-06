@@ -35,5 +35,9 @@ public class LlegaMsjA extends Evento {
     public void ejecutar() {
         
     }
+        @Override
+    public String getNombre() {
+        return "Llega Mensaje a A";
+    }
     
 }

@@ -34,5 +34,9 @@ public class LiberaB extends Evento {
     @Override
     public void ejecutar() {
     }
+        @Override
+    public String getNombre() {
+        return "Se libera B";
+    }
     
 }

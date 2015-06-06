@@ -32,5 +32,9 @@ public class VenceTimer extends Evento {
         //GoBackN.reloj = horaOcurrencia;
         
     }
+        @Override
+    public String getNombre() {
+        return "Se vence timer";
+    }
 
 }
