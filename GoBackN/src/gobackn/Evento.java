@@ -12,7 +12,7 @@ package gobackn;
 public abstract class Evento {
     protected double horaOcurrencia = Double.MAX_VALUE;
     public abstract double getHoraOcurrencia();
-    public abstract double setHoraOcurrencia(int val);
+    public abstract double setHoraOcurrencia(double val);
     public abstract void ejecutar();
     //lalolanda
 }

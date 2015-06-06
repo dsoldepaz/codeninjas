@@ -21,6 +21,8 @@ public class GoBackN {
     public static Mensaje[] colaB;
     public static boolean aLibre;
     public static boolean bLibre;
+    public static int ultimoACKRecibido;
+    public static int ultimoACKEnviado;
 
     public static void main(String[] args) {
         new GoBackN();
@@ -31,20 +33,29 @@ public class GoBackN {
         interfaz.imprimirL("Escriba los parametros de simulación y luego presione iniciar");
     }
 
-    public void Simular(double tTimer, double tMax) {        
+    public void Simular(double tTimer, double tMax) {
         //Inicializar variables
         interfaz.limpiar();
         reloj = 0;
-        aLibre= true;
-        bLibre= true;
+        aLibre = true;
+        bLibre = true;
         timer = new double[8];
-        for(double d : timer){
-            d= Double.MAX_VALUE;
-        }        
+        for (double d : timer) {
+            d = Double.MAX_VALUE;
+        }
+        ultimoACKRecibido = 0;
+        ultimoACKEnviado = 0;
+        colaA = new Mensaje[1000];
+        ventana = new Mensaje[1000];
+        colaEnviador = new Mensaje[1000];
+        colaB = new Mensaje[1000];
         Evento[] evento = {LlegaMsjA.getInstance(), LiberaA.getInstance(), LiberaB.getInstance(), LlegaACKaA.getInstance(), LlegaFrameB.getInstance(), VenceTimer.getInstance()};
+        for (Evento e : evento) {
+                e.setHoraOcurrencia(Double.MAX_VALUE);
+            }
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
         Evento actual = evento[0];
-        
+
         //ciclo de simulación
         while (reloj < tMax) {
             //escoger el próximo evento
@@ -52,13 +63,15 @@ public class GoBackN {
                 if (e.getHoraOcurrencia() < actual.getHoraOcurrencia()) {
                     actual = e;
                 }
-            }            
+            }
             //ejecutar el evento
             actual.ejecutar();
+            //desplegar estado de la simulacion
+
             reloj++;//solo para probar interfaz
-        }        
+        }
         //calcular estadísticas        
         interfaz.imprimirL("Fin");
     }
-    
+
 }
