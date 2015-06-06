@@ -55,6 +55,8 @@ public class GoBackN {
             }            
             //ejecutar el evento
             actual.ejecutar();
+            //desplegar estado de la simulacion
+            
             reloj++;//solo para probar interfaz
         }        
         //calcular estadísticas        
