@@ -5,6 +5,9 @@
  */
 package gobackn;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -52,7 +55,7 @@ public class GoBackN {
                 actualizarEstado(modoLento);
             }
             //guardar estadisticas de esta simulación
-            
+
         }
         //imprimir estadisticas de todas
 
@@ -89,15 +92,27 @@ public class GoBackN {
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
         actual = evento[0];
     }
-    void actualizarEstado(boolean modoLento){
-        if(modoLento){
+
+    void actualizarEstado(boolean modoLento) {
+        if (modoLento) {
             try {
-                Thread.sleep(300);
+                Thread.sleep(250);
             } catch (InterruptedException ex) {
                 Logger.getLogger(GoBackN.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println(reloj);
+            for (int i = 0; i < 50; i++) {
+                System.out.println();
+            }
+        System.out.println("Simulación: #");
+        System.out.println("Reloj: "+ reloj);
+        System.out.println("Longitud cola A: ");
+        System.out.println("Mensajes en cola A: ");
+        System.out.println("Último ACK recibido en A: ");
+        System.out.println("Último ACK enviado por B: ");
+        System.out.println("Total de frames recibidos por B: ");
+        System.out.println("Últimos frames recibidos por B: ");
+        System.out.println("Tipo de evento procesado: ");
     }
 
 }
