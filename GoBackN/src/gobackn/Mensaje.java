@@ -13,6 +13,7 @@ public class Mensaje {
 
     private final int numero;
     private boolean enviado;
+    private boolean conError;
 
     Mensaje(int numero) {
         this.numero = numero;
@@ -29,6 +30,13 @@ public class Mensaje {
 
     public void setEnviado(boolean enviado) {
         this.enviado = enviado;
+    }    
+    public boolean getConError() {
+        return conError;
+    }
+    
+    public void setConError(boolean error) {
+        this.conError = error;
     }
 
 }
