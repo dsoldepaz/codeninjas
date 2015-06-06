@@ -14,6 +14,13 @@ public class GoBackN {
     public static InterfazUsuario interfaz;
     public static double reloj;
     public static double tMax;
+    public static double[] timer;
+    public static Mensaje[] colaA;
+    public static Mensaje[] ventana;
+    public static Mensaje[] colaEnviador;
+    public static Mensaje[] colaB;
+    public static boolean aLibre;
+    public static boolean bLibre;
 
     public static void main(String[] args) {
         new GoBackN();
@@ -29,8 +36,12 @@ public class GoBackN {
         //Inicializar variables
         interfaz.limpiar();
         reloj = 0;
-        boolean enviadorLibre= true;
-        
+        aLibre= true;
+        bLibre= true;
+        timer = new double[8];
+        for(double d : timer){
+            d= Double.MAX_VALUE;
+        }        
         Evento[] evento = {LlegaMsjA.getInstance(), LiberaA.getInstance(), LiberaB.getInstance(), LlegaACKaA.getInstance(), LlegaFrameB.getInstance(), VenceTimer.getInstance()};
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
         Evento actual = evento[0];

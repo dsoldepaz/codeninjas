@@ -13,12 +13,10 @@ public class Mensaje {
 
     private final int numero;
     private boolean enviado;
-    private double timer;
 
     Mensaje(int numero) {
         this.numero = numero;
         enviado = false;
-        timer = Double.MAX_VALUE;
     }
 
     public int getNumero() {
@@ -33,11 +31,4 @@ public class Mensaje {
         this.enviado = enviado;
     }
 
-    public double getTimer() {
-        return timer;
-    }
-
-    public void setTimer(double timer) {
-        this.timer = timer;
-    }
 }
