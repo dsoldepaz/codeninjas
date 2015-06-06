@@ -13,6 +13,7 @@ public class LiberaA extends Evento {
 
    private static LiberaA instance = null;
    private Distribuidor distribuidor;
+   private GoBackN master;
    private VenceTimer venceTimer;
    
    protected LiberaA() {
@@ -37,13 +38,14 @@ public class LiberaA extends Evento {
 
     @Override
     public void ejecutar() {
+        master = GoBackN.getInstance();
         double Y = distribuidor.distribucionConvertirMensaje();
-        if(GoBackN.getInstance().colaEnviador.isEmpty()){
-             GoBackN.getInstance().aLibre= true;
+        if(master.colaEnviador.isEmpty()){
+             master.aLibre= true;
          }
          else{
-            this.horaOcurrencia = GoBackN.getInstance().reloj + distribuidor.distribucionConvertirMensaje();
-            GoBackN.getInstance().aLibre= false;
+            this.horaOcurrencia = master.reloj + distribuidor.distribucionConvertirMensaje();
+            master.aLibre= false;
             
             //poner el timer
          }
