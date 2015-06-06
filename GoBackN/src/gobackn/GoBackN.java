@@ -21,6 +21,8 @@ public class GoBackN {
     public static Mensaje[] colaB;
     public static boolean aLibre;
     public static boolean bLibre;
+    public static int ultimoACKRecibido;
+    public static int ultimoACKEnviado;
 
     public static void main(String[] args) {
         new GoBackN();
