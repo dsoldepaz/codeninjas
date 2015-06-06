@@ -219,10 +219,12 @@ public class InterfazUsuario extends javax.swing.JFrame {
 
         jLabel5.setText("Reloj:");
 
+        jTextField4.setEditable(false);
         jTextField4.setText(" ");
 
         jLabel6.setText("Longitud de la cola A:");
 
+        jTextField5.setEditable(false);
         jTextField5.setText(" ");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,6 +234,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
 
         jLabel7.setText("Mensajes en A:");
 
+        jTextField8.setEditable(false);
         jTextField8.setText("  ");
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,6 +242,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField9.setEditable(false);
         jTextField9.setText("  ");
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,6 +250,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField10.setEditable(false);
         jTextField10.setText("  ");
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,6 +258,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField11.setEditable(false);
         jTextField11.setText("  ");
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,6 +266,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField12.setEditable(false);
         jTextField12.setText("  ");
         jTextField12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,6 +274,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField13.setEditable(false);
         jTextField13.setText("  ");
         jTextField13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,6 +282,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField14.setEditable(false);
         jTextField14.setText("  ");
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,6 +290,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField15.setEditable(false);
         jTextField15.setText("  ");
         jTextField15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,6 +298,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField16.setEditable(false);
         jTextField16.setText("  ");
         jTextField16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,6 +306,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField17.setEditable(false);
         jTextField17.setText("  ");
         jTextField17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,6 +314,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField18.setEditable(false);
         jTextField18.setText("  ");
         jTextField18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,6 +322,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField19.setEditable(false);
         jTextField19.setText("  ");
         jTextField19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -316,6 +330,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField20.setEditable(false);
         jTextField20.setText("  ");
         jTextField20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,6 +338,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField21.setEditable(false);
         jTextField21.setText("  ");
         jTextField21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -330,6 +346,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField22.setEditable(false);
         jTextField22.setText("  ");
         jTextField22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -337,6 +354,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField23.setEditable(false);
         jTextField23.setText("  ");
         jTextField23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,6 +362,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField24.setEditable(false);
         jTextField24.setText("  ");
         jTextField24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,6 +370,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField25.setEditable(false);
         jTextField25.setText("  ");
         jTextField25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,6 +378,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField26.setEditable(false);
         jTextField26.setText("  ");
         jTextField26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -365,6 +386,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField27.setEditable(false);
         jTextField27.setText("  ");
         jTextField27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -380,16 +402,20 @@ public class InterfazUsuario extends javax.swing.JFrame {
 
         jLabel10.setText("Último ACK recibido en A:");
 
+        jTextField28.setEditable(false);
         jTextField28.setText(" ");
 
+        jTextField6.setEditable(false);
         jTextField6.setText(" ");
 
         jLabel11.setText("Total de frames recibidos por B:");
 
+        jTextField7.setEditable(false);
         jTextField7.setText(" ");
 
         jLabel12.setText("Últimos frames recibidos por B:");
 
+        jTextField29.setEditable(false);
         jTextField29.setText("  ");
         jTextField29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,6 +423,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField30.setEditable(false);
         jTextField30.setText("  ");
         jTextField30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -404,6 +431,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField31.setEditable(false);
         jTextField31.setText("  ");
         jTextField31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -411,6 +439,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField32.setEditable(false);
         jTextField32.setText("  ");
         jTextField32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,6 +447,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField33.setEditable(false);
         jTextField33.setText("  ");
         jTextField33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -425,6 +455,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField34.setEditable(false);
         jTextField34.setText("  ");
         jTextField34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -432,6 +463,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField35.setEditable(false);
         jTextField35.setText("  ");
         jTextField35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -439,6 +471,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField36.setEditable(false);
         jTextField36.setText("  ");
         jTextField36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -446,6 +479,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField37.setEditable(false);
         jTextField37.setText("  ");
         jTextField37.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -453,6 +487,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField38.setEditable(false);
         jTextField38.setText("  ");
         jTextField38.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -462,6 +497,7 @@ public class InterfazUsuario extends javax.swing.JFrame {
 
         jLabel13.setText("Evento actual:");
 
+        jTextField39.setEditable(false);
         jTextField39.setText(" ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
