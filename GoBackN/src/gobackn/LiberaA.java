@@ -27,7 +27,7 @@ public class LiberaA extends Evento {
     }
 
     @Override
-    public double setHoraOcurrencia(int val) {
+    public double setHoraOcurrencia(double val) {
         return horaOcurrencia=val;
     }
 
