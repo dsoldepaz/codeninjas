@@ -7,6 +7,7 @@ package gobackn;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class GoBackN {
     public static int ultimoACKEnviado;
     Evento[] evento;
     Evento actual;
+    Interfaz interfaz;
 
     public static void main(String[] args) {
         new GoBackN(1, 11, 111, true);//corre la simulación 1 vez, con timer 11 y tiempo maximo 111, en modo lento
@@ -91,6 +93,8 @@ public class GoBackN {
         }
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
         actual = evento[0];
+        interfaz = new Interfaz(); 
+        interfaz.setVisible(true);
     }
 
     void actualizarEstado(boolean modoLento) {
@@ -104,15 +108,19 @@ public class GoBackN {
             for (int i = 0; i < 50; i++) {
                 System.out.println();
             }
-        System.out.println("Simulación: #");
-        System.out.println("Reloj: "+ reloj);
-        System.out.println("Longitud cola A: ");
-        System.out.println("Mensajes en cola A: ");
-        System.out.println("Último ACK recibido en A: ");
-        System.out.println("Último ACK enviado por B: ");
-        System.out.println("Total de frames recibidos por B: ");
-        System.out.println("Últimos frames recibidos por B: ");
-        System.out.println("Tipo de evento procesado: ");
+        interfaz.limpiar();
+        interfaz.printL("Simulación: #");
+        interfaz.printL("Reloj: "+ reloj);
+        interfaz.printL("Longitud cola A: "+ colaA.size());        
+        interfaz.printL("Mensajes en cola A: {");
+        for(){
+            
+        }
+        interfaz.printL("Último ACK recibido en A: ");
+        interfaz.printL("Último ACK enviado por B: ");
+        interfaz.printL("Total de frames recibidos por B: " + colaB.size());
+        interfaz.printL("Últimos frames recibidos por B: ");
+        interfaz.printL("Tipo de evento procesado: ");
     }
 
 }
