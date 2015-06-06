@@ -5,73 +5,90 @@
  */
 package gobackn;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author bana
  */
 public class GoBackN {
 
-    public static InterfazUsuario interfaz;
     public static double reloj;
     public static double tMax;
+    public static double tTimer;
     public static double[] timer;
-    public static Mensaje[] colaA;
-    public static Mensaje[] ventana;
-    public static Mensaje[] colaEnviador;
-    public static Mensaje[] colaB;
+    List<Mensaje> colaA;
+    List<Mensaje> ventana;
+    List<Mensaje> colaEnviador;
+    List<Mensaje> colaB;
     public static boolean aLibre;
     public static boolean bLibre;
     public static int ultimoACKRecibido;
     public static int ultimoACKEnviado;
+    Evento[] evento;
+    Evento actual;
 
     public static void main(String[] args) {
-        new GoBackN();
+        new GoBackN(1, 1, 1);
     }
 
-    GoBackN() {
-        interfaz = new InterfazUsuario(this);
-        interfaz.imprimirL("Escriba los parametros de simulación y luego presione iniciar");
+    GoBackN(int veces, double tTimer, double tMax) {
+        for (int i = 0; i < veces; i++) {
+            inicializar(tTimer, tMax);
+            while (reloj < tMax) {
+                //escoger el próximo evento
+                for (Evento e : evento) {
+                    if (e.getHoraOcurrencia() < actual.getHoraOcurrencia()) {
+                        actual = e;
+                    }
+                }
+                //ejecutar el evento
+                actual.ejecutar();
+                reloj++;//solo para probar
+                //actualizar estado
+                actualizarEstado();
+            }
+            //guardar estadisticas de esta simulación
+            
+        }
+        //imprimir estadisticas de todas
+
     }
 
-    public void Simular(double tTimer, double tMax) {
+    public void inicializar(double tTimer, double tMax) {
         //Inicializar variables
-        interfaz.limpiar();
         reloj = 0;
         aLibre = true;
         bLibre = true;
         timer = new double[8];
+        this.tMax = tMax;
+        this.tTimer = tTimer;
         for (double d : timer) {
             d = Double.MAX_VALUE;
         }
         ultimoACKRecibido = 0;
         ultimoACKEnviado = 0;
-        colaA = new Mensaje[1000];
-        ventana = new Mensaje[1000];
-        colaEnviador = new Mensaje[1000];
-        colaB = new Mensaje[1000];
-        Evento[] evento = {LlegaMsjA.getInstance(), LiberaA.getInstance(), LiberaB.getInstance(), LlegaACKaA.getInstance(), LlegaFrameB.getInstance(), VenceTimer.getInstance()};
+        colaA = new ArrayList<Mensaje>();
+        ventana = new ArrayList<Mensaje>();
+        colaEnviador = new ArrayList<Mensaje>();
+        colaB = new ArrayList<Mensaje>();
+        evento = new Evento[6];
+        evento[0] = LlegaMsjA.getInstance();
+        evento[1] = LiberaA.getInstance();
+        evento[2] = LiberaB.getInstance();
+        evento[3] = LlegaACKaA.getInstance();
+        evento[4] = LlegaFrameB.getInstance();
+        evento[5] = VenceTimer.getInstance();
+
         for (Evento e : evento) {
-                e.setHoraOcurrencia(Double.MAX_VALUE);
-            }
-        LlegaMsjA.getInstance().setHoraOcurrencia(0);
-        Evento actual = evento[0];
-
-        //ciclo de simulación
-        while (reloj < tMax) {
-            //escoger el próximo evento
-            for (Evento e : evento) {
-                if (e.getHoraOcurrencia() < actual.getHoraOcurrencia()) {
-                    actual = e;
-                }
-            }
-            //ejecutar el evento
-            actual.ejecutar();
-            //desplegar estado de la simulacion
-
-            reloj++;//solo para probar interfaz
+            e.setHoraOcurrencia(Double.MAX_VALUE);
         }
-        //calcular estadísticas        
-        interfaz.imprimirL("Fin");
+        LlegaMsjA.getInstance().setHoraOcurrencia(0);
+        actual = evento[0];
+    }
+    void actualizarEstado(){
+        System.out.println(reloj);
     }
 
 }
