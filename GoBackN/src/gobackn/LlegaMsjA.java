@@ -12,6 +12,8 @@ package gobackn;
 public class LlegaMsjA extends Evento {
 
    private static LlegaMsjA instance = null;
+   private GoBackN master;
+   
    protected LlegaMsjA() {
       
    }
@@ -33,6 +35,9 @@ public class LlegaMsjA extends Evento {
 
     @Override
     public void ejecutar() {
+        master= GoBackN.getInstance();
+        master.reloj=horaOcurrencia;
+        horaOcurrencia= master.reloj+1;
         
     }
         @Override

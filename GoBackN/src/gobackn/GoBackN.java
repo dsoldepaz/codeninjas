@@ -95,7 +95,6 @@ public class GoBackN {
                 }
                 //ejecutar el evento
                 actual.ejecutar();
-                reloj++;//solo para probar
                 //actualizar estado
                 actualizarEstado(modoLento);
             }
