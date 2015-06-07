@@ -12,6 +12,11 @@ package gobackn;
 public class LlegaFrameB extends Evento {
 
    private static LlegaFrameB instance = null;
+   private Distribuidor distribuidor;
+   private GoBackN master;
+   private LiberaB liberaB;
+   private LlegaACKaA llegaACKaA;
+   
    protected LlegaFrameB() {
    }
    public static LlegaFrameB getInstance() {
@@ -32,6 +37,33 @@ public class LlegaFrameB extends Evento {
 
     @Override
     public void ejecutar() {
+        master = GoBackN.getInstance();
+        distribuidor = Distribuidor.getInstance();
+        liberaB = LiberaB.getInstance();
+        
+        double W = distribuidor.revisaFrame();
+        master.reloj = this.horaOcurrencia;
+        master.colaB.add( master.mensajesEnviados.get(0));
+        
+        if(master.bLibre){
+            Mensaje ack;
+            Mensaje msj = master.colaB.get(0);
+            master.bLibre = false;
+            liberaB.horaOcurrencia = master.reloj+W+0.25;
+            Distribuidor.EstadoMensaje estadoAck = distribuidor.distribucionLlegaACKaA();
+            if(msj.getConError()){
+                ack = new Mensaje(msj.getNumero());
+                master.ACKenviados.add(ack);
+            }
+            else{
+                ack = new Mensaje(msj.getNumero() + 1);
+                master.ACKenviados.add(ack);
+            }
+                
+            if(estadoAck == Distribuidor.EstadoMensaje.LLEGO){
+                   llegaACKaA.horaOcurrencia = master.reloj + W +1.25;
+             }
+        }
         
     }
         @Override
