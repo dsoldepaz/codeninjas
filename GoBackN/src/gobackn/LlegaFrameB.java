@@ -13,7 +13,6 @@ public class LlegaFrameB extends Evento {
 
    private static LlegaFrameB instance = null;
    protected LlegaFrameB() {
-      
    }
    public static LlegaFrameB getInstance() {
       if(instance == null) {
@@ -33,6 +32,7 @@ public class LlegaFrameB extends Evento {
 
     @Override
     public void ejecutar() {
+        
     }
         @Override
     public String getNombre() {

@@ -28,6 +28,7 @@ public class GoBackN {
     List<Mensaje> ventana;
     List<Mensaje> colaEnviador;
     List<Mensaje> colaB;
+    List<Mensaje> mensajesEnviados;
     public boolean aLibre;
     public boolean bLibre;
     public int ultimoACKRecibido;
@@ -36,6 +37,7 @@ public class GoBackN {
     Evento actual;
     private static GoBackN instance = null;
     Interfaz interfaz;
+    int numeroMsj;
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
@@ -56,6 +58,8 @@ public class GoBackN {
         timer = new double[8];
         this.tMax = tMax;
         this.tTimer = tTimer;
+        numeroMsj = 0;
+        
         for (double d : timer) {
             d = Double.MAX_VALUE;
         }
@@ -144,6 +148,14 @@ public class GoBackN {
         interfaz.printL("}");
         
         interfaz.printL("Tipo de evento procesado: " + actual.getNombre());
+    }
+    double getMinimumValue(double[] a){
+        double val = Double.MAX_VALUE;
+        for(double b: a){
+            if(b < val)
+                val = b;
+        }
+        return val;
     }
 
 }
