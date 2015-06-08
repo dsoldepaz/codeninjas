@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package gobackn;
-import java.math.*;
 /**
  *
  * @author b06171

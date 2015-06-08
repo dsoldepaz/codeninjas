@@ -5,10 +5,6 @@
  */
 package gobackn;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.io.Console;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -60,7 +56,7 @@ public class GoBackN {
         this.tMax = tMax;
         this.tTimer = tTimer;
         numeroMsj = 0;
-        
+
         for (double d : timer) {
             d = Double.MAX_VALUE;
         }
@@ -124,9 +120,18 @@ public class GoBackN {
         interfaz.printL("Longitud cola A: " + colaA.size());
 
         interfaz.printT("Mensajes en cola A: {");
-        for (int i = 0; i < 20; i++) {
+        for (int i = 20; i > 8; i--) {
             try {
                 interfaz.printT(colaA.get(i) + ", ");
+            } catch (IndexOutOfBoundsException e) {
+
+            }
+
+        }
+        interfaz.printT("|");
+        for (int i = 7; i > 0; i--) {
+            try {
+                interfaz.printT(ventana.get(i) + ", ");
             } catch (IndexOutOfBoundsException e) {
 
             }
@@ -147,14 +152,16 @@ public class GoBackN {
 
         }
         interfaz.printL("}");
-        
+
         interfaz.printL("Tipo de evento procesado: " + actual.getNombre());
     }
-    double getMinimumValue(double[] a){
+
+    double getMinimumValue(double[] a) {
         double val = Double.MAX_VALUE;
-        for(double b: a){
-            if(b < val)
+        for (double b : a) {
+            if (b < val) {
                 val = b;
+            }
         }
         return val;
     }
