@@ -58,10 +58,10 @@ public class Distribuidor {
    public double revisaFrame(){
        return Math.sqrt(5*Math.random()+4);
    }
-   public boolean perdidoACK(){
+   public EstadoMensaje perdidoACK(){
        if(Math.random()<0.15){
-           return true;
+           return EstadoMensaje.PERDIDO;
        }
-       return false;
+       return EstadoMensaje.LLEGO;
    }
 }
