@@ -40,6 +40,7 @@ public class LlegaFrameB extends Evento {
         master = GoBackN.getInstance();
         distribuidor = Distribuidor.getInstance();
         liberaB = LiberaB.getInstance();
+        llegaACKaA =LlegaACKaA.getInstance();
         
         double W = distribuidor.revisaFrame();
         master.reloj = this.horaOcurrencia;

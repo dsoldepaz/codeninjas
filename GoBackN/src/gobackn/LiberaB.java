@@ -11,16 +11,22 @@ package gobackn;
  */
 public class LiberaB extends Evento {
 
-   private static LiberaB instance = null;
-   protected LiberaB() {
-      
-   }
-   public static LiberaB getInstance() {
-      if(instance == null) {
-         instance = new LiberaB();
-      }
-      return instance;
-   }
+    private static LiberaB instance = null;
+    private GoBackN master;
+    private LlegaACKaA llegaACKaA;
+    private Distribuidor distribuidor;
+
+    protected LiberaB() {
+
+    }
+
+    public static LiberaB getInstance() {
+        if (instance == null) {
+            instance = new LiberaB();
+        }
+        return instance;
+    }
+
     @Override
     public double getHoraOcurrencia() {
         return horaOcurrencia;
@@ -28,15 +34,35 @@ public class LiberaB extends Evento {
 
     @Override
     public double setHoraOcurrencia(double val) {
-        return horaOcurrencia=val;
+        return horaOcurrencia = val;
     }
 
     @Override
     public void ejecutar() {
+        master = GoBackN.getInstance();
+        distribuidor = Distribuidor.getInstance();
+        double w = distribuidor.revisaFrame();
+        llegaACKaA = LlegaACKaA.getInstance();
+
+        master.reloj = horaOcurrencia;
+        if (master.colaB.isEmpty()) {
+            master.bLibre = true;
+        } else {
+            horaOcurrencia = master.reloj + w + 0.25;
+            master.bLibre = false;
+            Mensaje msj = master.colaB.remove(0);                        
+            master.ultimoACKEnviado = msj.getNumero() + 1;
+            llegaACKaA.horaOcurrencia = master.reloj + w + 1.25;            
+            if (!distribuidor.perdidoACK()) {
+                master.ultimoACKRecibido = msj.getNumero() + 1;
+            }            
+        }
+
     }
-        @Override
+
+    @Override
     public String getNombre() {
         return "Se libera B";
     }
-    
+
 }

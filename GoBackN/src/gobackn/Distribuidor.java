@@ -56,6 +56,12 @@ public class Distribuidor {
        return (-1/2)*Math.log(1-Math.random());
    }
    public double revisaFrame(){
-       return Math.sqrt(10*Math.random()+1);
+       return Math.sqrt(5*Math.random()+4);
+   }
+   public boolean perdidoACK(){
+       if(Math.random()<0.15){
+           return true;
+       }
+       return false;
    }
 }
