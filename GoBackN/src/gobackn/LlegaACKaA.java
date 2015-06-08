@@ -11,16 +11,21 @@ package gobackn;
  */
 public class LlegaACKaA extends Evento {
 
-   private static LlegaACKaA instance = null;
-   protected LlegaACKaA() {
-      
-   }
-   public static LlegaACKaA getInstance() {
-      if(instance == null) {
-         instance = new LlegaACKaA();
-      }
-      return instance;
-   }
+    private static LlegaACKaA instance = null;
+    private GoBackN master;
+    private VenceTimer venceTimer;
+
+    protected LlegaACKaA() {
+
+    }
+
+    public static LlegaACKaA getInstance() {
+        if (instance == null) {
+            instance = new LlegaACKaA();
+        }
+        return instance;
+    }
+
     @Override
     public double getHoraOcurrencia() {
         return horaOcurrencia;
@@ -28,15 +33,35 @@ public class LlegaACKaA extends Evento {
 
     @Override
     public double setHoraOcurrencia(double val) {
-        return horaOcurrencia=val;
+        return horaOcurrencia = val;
     }
 
     @Override
     public void ejecutar() {
+        master = GoBackN.getInstance();
+        venceTimer = VenceTimer.getInstance();
+
+        master.reloj = horaOcurrencia;
+        horaOcurrencia = Double.MAX_VALUE;
+        for (int i = master.ventana.get(0).getNumero(); i < master.ultimoACKRecibido; i++) {
+            master.ventana.remove(0);
+            for (int t = 0; t < 7; t++) {
+                master.timer[t] = master.timer[t + 1];
+            }
+            master.timer[7]=Double.MAX_VALUE;            
+        }
+        venceTimer.setHoraOcurrencia(master.timer[0]);
+        if (!master.colaA.isEmpty()) {
+            for (int i = master.ventana.size(); i < 8; i++) {
+                master.ventana.add(master.colaA.remove(0));
+            }
+        }
+
     }
-        @Override
+
+    @Override
     public String getNombre() {
         return "Llega ACK a A";
     }
-    
+
 }

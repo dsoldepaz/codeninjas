@@ -53,8 +53,6 @@ public class GoBackN {
         aLibre = true;
         bLibre = true;
         timer = new double[8];
-        this.tMax = tMax;
-        this.tTimer = tTimer;
         numeroMsj = 0;
 
         for (double d : timer) {
@@ -62,10 +60,10 @@ public class GoBackN {
         }
         ultimoACKRecibido = 0;
         ultimoACKEnviado = 0;
-        colaA = new ArrayList<Mensaje>();
-        ventana = new ArrayList<Mensaje>();
-        colaEnviador = new ArrayList<Mensaje>();
-        colaB = new ArrayList<Mensaje>();
+        colaA = new ArrayList<>();
+        ventana = new ArrayList<>();
+        colaEnviador = new ArrayList<>();
+        colaB = new ArrayList<>();
         evento = new Evento[6];
         evento[0] = LlegaMsjA.getInstance();
         evento[1] = LiberaA.getInstance();
@@ -115,7 +113,7 @@ public class GoBackN {
             }
         }
         interfaz.limpiar();
-        interfaz.printL("Simulación: #");
+        interfaz.printL("Simulación: ");
         interfaz.printL("Reloj: " + reloj);
         interfaz.printL("Longitud cola A: " + colaA.size());
 

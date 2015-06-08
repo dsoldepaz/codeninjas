@@ -40,11 +40,11 @@ public class LiberaB extends Evento {
     @Override
     public void ejecutar() {
         master = GoBackN.getInstance();
-        distribuidor = Distribuidor.getInstance();
-        double w = distribuidor.revisaFrame();
+        distribuidor = Distribuidor.getInstance();        
         llegaACKaA = LlegaACKaA.getInstance();
-
+        
         master.reloj = horaOcurrencia;
+        double w = distribuidor.revisaFrame();        
         if (master.colaB.isEmpty()) {
             master.bLibre = true;
         } else {
