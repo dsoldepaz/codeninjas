@@ -53,14 +53,14 @@ public class LiberaB extends Evento {
             master.bLibre = false;
             Mensaje msj = master.colaB.remove(0);
             if (msj.getConError()) {
-                master.ultimoACKEnviado = msj.getNumero();
+                master.ultimoACKEnviadoPorB = msj.getNumero();
             } else {
-                master.ultimoACKEnviado = msj.getNumero() + 1;
-                master.totalRecibidosB.add(msj);
+                master.ultimoACKEnviadoPorB = msj.getNumero() + 1;
+                master.HistorialRecibidosB.add(msj);
             }
             llegaACKaA.horaOcurrencia = master.reloj + w + 1.25;
             if (!(distribuidor.perdidoACK() == Distribuidor.EstadoMensaje.PERDIDO)) {
-                master.ultimoACKRecibido = msj.getNumero() + 1;
+                master.ultimoACKRecibidoPorA = msj.getNumero() + 1;
             }
         }
 

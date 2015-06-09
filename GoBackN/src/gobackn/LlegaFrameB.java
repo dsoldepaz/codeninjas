@@ -50,14 +50,14 @@ public class LlegaFrameB extends Evento {
             master.bLibre = false;
             liberaB.horaOcurrencia = master.reloj+W+0.25;
             if(msj.getConError()){
-            master.ultimoACKEnviado = msj.getNumero();
+            master.ultimoACKEnviadoPorB = msj.getNumero();
             }
             else{
-            master.ultimoACKEnviado = msj.getNumero()+1;
-            master.totalRecibidosB.add(msj);
+            master.ultimoACKEnviadoPorB = msj.getNumero()+1;
+            master.HistorialRecibidosB.add(msj);
             }
             if(distribuidor.perdidoACK() == Distribuidor.EstadoMensaje.LLEGO){
-                   master.ultimoACKRecibido = master.ultimoACKEnviado;
+                   master.ultimoACKRecibidoPorA = master.ultimoACKEnviadoPorB;
                    llegaACKaA.horaOcurrencia = master.reloj + W +1.25;
              }
         }
