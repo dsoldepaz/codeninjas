@@ -54,6 +54,7 @@ public class LlegaFrameB extends Evento {
             }
             else{
             master.ultimoACKEnviado = msj.getNumero()+1;
+            master.totalRecibidosB.add(msj);
             }
             if(distribuidor.perdidoACK() == Distribuidor.EstadoMensaje.LLEGO){
                    master.ultimoACKRecibido = master.ultimoACKEnviado;

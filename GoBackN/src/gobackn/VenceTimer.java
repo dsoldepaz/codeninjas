@@ -46,9 +46,14 @@ public class VenceTimer extends Evento {
         double Y = distribuidor.distribucionConvertirMensaje();
         int timerMenor = 0;
         master.reloj= horaOcurrencia;
+        
+        //solo puede vencerse el primero y de igual forma hay que enviarlos todos
         for(Mensaje m: master.ventana){
             m.setEnviado(false);
         }
+        for (int i = 0 ; i < master.timer.length; ++i) {
+            master.timer[i] = Double.MAX_VALUE;
+        }        
         for(int i = 1; i < master.timer.length; ++i){
             if(master.timer[timerMenor] > master.timer[i] )
                 timerMenor = i;
