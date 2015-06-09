@@ -36,7 +36,7 @@ public class GoBackN {
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
-        gbn.simular(1, 12, 50, true);//una vez, timer, tiempo max, modo lento
+        gbn.simular(1, 12, 1000, true);//una vez, timer, tiempo max, modo lento
     }
 
     public static GoBackN getInstance() {
@@ -53,8 +53,8 @@ public class GoBackN {
         timer = new double[8];
         numeroMsj = 0;
 
-        for (double d : timer) {
-            d = Double.MAX_VALUE;
+        for (int i = 0 ; i < timer.length; ++i) {
+            timer[i] = Double.MAX_VALUE;
         }
         ultimoACKRecibido = 0;
         ultimoACKEnviado = 0;

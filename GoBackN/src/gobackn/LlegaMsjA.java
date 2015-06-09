@@ -16,6 +16,7 @@ public class LlegaMsjA extends Evento {
    private Distribuidor distribuidor;
    private VenceTimer venceTimer;
    private LlegaFrameB llegaFrameB;
+   private LiberaA liberaA;
    
    protected LlegaMsjA() {
       
@@ -42,6 +43,7 @@ public class LlegaMsjA extends Evento {
         distribuidor = Distribuidor.getInstance();
         venceTimer = VenceTimer.getInstance();
         llegaFrameB = LlegaFrameB.getInstance();
+        liberaA = LiberaA.getInstance();
         double Y = distribuidor.distribucionConvertirMensaje();
         double X = distribuidor.distribucionLlegaMensajeA();
         master.reloj = horaOcurrencia;
@@ -57,7 +59,8 @@ public class LlegaMsjA extends Evento {
           if(master.aLibre){
             master.aLibre = false;
             Mensaje m = master.colaEnviador.get(0);
-            master.timer[master.ventana.indexOf(m)] = master.reloj + master.tTimer + Y +1;
+            master.timer[master.ventana.indexOf(m)] = master.reloj + master.tTimer+ X +1;
+            liberaA.horaOcurrencia = master.reloj + Y + X+1;
             Distribuidor.EstadoMensaje estado = distribuidor.distribucionLlegaMensajeB();
             if (estado == Distribuidor.EstadoMensaje.ERROR || estado == Distribuidor.EstadoMensaje.LLEGO) {
                 if (estado == Distribuidor.EstadoMensaje.ERROR) {
@@ -68,11 +71,13 @@ public class LlegaMsjA extends Evento {
                     m.setEnviado(true);
                     m.setConError(false);
                 }
-                llegaFrameB.horaOcurrencia = master.reloj + Y + 2;
+                llegaFrameB.horaOcurrencia = master.reloj+X +Y + 2;
+                venceTimer.setHoraOcurrencia(master.getMinimumValue(master.timer));
                 master.colaB.add(m);
             }
           }
         }
+
         this.horaOcurrencia = master.reloj + X;   
     }
         @Override

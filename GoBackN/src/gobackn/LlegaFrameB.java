@@ -56,6 +56,7 @@ public class LlegaFrameB extends Evento {
             master.ultimoACKEnviado = msj.getNumero()+1;
             }
             if(distribuidor.perdidoACK() == Distribuidor.EstadoMensaje.LLEGO){
+                   master.ultimoACKRecibido = master.ultimoACKEnviado;
                    llegaACKaA.horaOcurrencia = master.reloj + W +1.25;
              }
         }

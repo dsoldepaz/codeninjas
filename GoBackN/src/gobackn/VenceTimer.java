@@ -41,18 +41,22 @@ public class VenceTimer extends Evento {
     public void ejecutar() {
         master = GoBackN.getInstance();
         distribuidor = Distribuidor.getInstance();
-        liberaA=LiberaA.getInstance();
+        liberaA =LiberaA.getInstance();
         llegaFrameB = LlegaFrameB.getInstance();
         double Y = distribuidor.distribucionConvertirMensaje();
-        
+        int timerMenor = 0;
         master.reloj= horaOcurrencia;
         for(Mensaje m: master.ventana){
             m.setEnviado(false);
         }
+        for(int i = 1; i < master.timer.length; ++i){
+            if(master.timer[timerMenor] > master.timer[i] )
+                timerMenor = i;
+        }
         if(master.aLibre){
             master.aLibre=false;            
-            master.timer[0] = master.reloj + master.tTimer + Y;
-            liberaA.setHoraOcurrencia(master.reloj+Y+1);
+            master.timer[timerMenor] = master.reloj + master.tTimer + Y;
+            liberaA.horaOcurrencia=master.reloj+Y+1;
             Distribuidor.EstadoMensaje estado = distribuidor.distribucionLlegaMensajeB();
             if (estado == Distribuidor.EstadoMensaje.ERROR || estado == Distribuidor.EstadoMensaje.LLEGO) {
                 if (estado == Distribuidor.EstadoMensaje.ERROR) {
@@ -67,8 +71,10 @@ public class VenceTimer extends Evento {
             }
         }else{
                 master.colaA.add(master.ventana.get(0));
+                master.timer[timerMenor] = Double.MAX_VALUE;
+                
         }
-        
+        horaOcurrencia = master.reloj + master.getMinimumValue(master.timer);
     }
 
     @Override

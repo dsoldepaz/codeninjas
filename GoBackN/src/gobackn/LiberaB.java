@@ -47,6 +47,7 @@ public class LiberaB extends Evento {
         double w = distribuidor.revisaFrame();
         if (master.colaB.isEmpty()) {
             master.bLibre = true;
+            horaOcurrencia = Double.MAX_VALUE;
         } else {
             horaOcurrencia = master.reloj + w + 0.25;
             master.bLibre = false;
