@@ -36,7 +36,7 @@ public class GoBackN {
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
-        gbn.simular(1, 12, 50, true);
+        gbn.simular(1, 12, 50, true);//una vez, timer, tiempo max, modo lento
     }
 
     public static GoBackN getInstance() {
@@ -82,7 +82,7 @@ public class GoBackN {
 
     public void simular(int veces, double tTimer, double tMax, boolean modoLento) {
         for (int i = 0; i < veces; i++) {
-            //inicializar(tTimer, tMax);
+            this.tTimer=tTimer;
             while (reloj < tMax) {
                 //escoger el próximo evento
                 for (Evento e : evento) {
@@ -118,7 +118,7 @@ public class GoBackN {
         interfaz.printT("Mensajes en cola A: {");
         for (int i = 20; i > 8; i--) {
             try {
-                interfaz.printT(colaA.get(i) + ", ");
+                interfaz.printT(colaA.get(i).getNumero() + ", ");
             } catch (IndexOutOfBoundsException e) {
 
             }
@@ -127,7 +127,7 @@ public class GoBackN {
         interfaz.printT("|");
         for (int i = 7; i > 0; i--) {
             try {
-                interfaz.printT(ventana.get(i) + ", ");
+                interfaz.printT(ventana.get(i).getNumero() + ", ");
             } catch (IndexOutOfBoundsException e) {
 
             }
@@ -141,7 +141,7 @@ public class GoBackN {
         interfaz.printT("Últimos frames recibidos por B: {");
         for (int i = 0; i < 20; i++) {
             try {
-                interfaz.printT(colaB.get(i) + ", ");
+                interfaz.printT(colaB.get(i).getNumero() + ", ");
             } catch (IndexOutOfBoundsException e) {
 
             }
