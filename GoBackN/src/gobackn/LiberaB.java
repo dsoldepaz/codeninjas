@@ -40,22 +40,26 @@ public class LiberaB extends Evento {
     @Override
     public void ejecutar() {
         master = GoBackN.getInstance();
-        distribuidor = Distribuidor.getInstance();        
+        distribuidor = Distribuidor.getInstance();
         llegaACKaA = LlegaACKaA.getInstance();
-        
+
         master.reloj = horaOcurrencia;
-        double w = distribuidor.revisaFrame();        
+        double w = distribuidor.revisaFrame();
         if (master.colaB.isEmpty()) {
             master.bLibre = true;
         } else {
             horaOcurrencia = master.reloj + w + 0.25;
             master.bLibre = false;
-            Mensaje msj = master.colaB.remove(0);                        
-            master.ultimoACKEnviado = msj.getNumero() + 1;
-            llegaACKaA.horaOcurrencia = master.reloj + w + 1.25;            
+            Mensaje msj = master.colaB.remove(0);
+            if (msj.getConError()) {
+                master.ultimoACKEnviado = msj.getNumero();
+            } else {
+                master.ultimoACKEnviado = msj.getNumero() + 1;
+            }
+            llegaACKaA.horaOcurrencia = master.reloj + w + 1.25;
             if (!(distribuidor.perdidoACK() == Distribuidor.EstadoMensaje.PERDIDO)) {
                 master.ultimoACKRecibido = msj.getNumero() + 1;
-            }            
+            }
         }
 
     }
