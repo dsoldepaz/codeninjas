@@ -44,24 +44,19 @@ public class LlegaFrameB extends Evento {
         
         double W = distribuidor.revisaFrame();
         master.reloj = this.horaOcurrencia;
-        master.colaB.add( master.mensajesEnviados.get(0));
         
         if(master.bLibre){
             Mensaje ack;
-            Mensaje msj = master.colaB.get(0);
+            Mensaje msj = master.colaB.remove(0);
             master.bLibre = false;
             liberaB.horaOcurrencia = master.reloj+W+0.25;
-            Distribuidor.EstadoMensaje estadoAck = distribuidor.distribucionLlegaACKaA();
             if(msj.getConError()){
-                ack = new Mensaje(msj.getNumero());
-                master.ACKenviados.add(ack);
+            master.ultimoACKRecibido = msj.getNumero();
             }
             else{
-                ack = new Mensaje(msj.getNumero() + 1);
-                master.ACKenviados.add(ack);
+            master.ultimoACKEnviado = msj.getNumero()+1;
             }
-                
-            if(estadoAck == Distribuidor.EstadoMensaje.LLEGO){
+            if(distribuidor.perdidoACK() == Distribuidor.EstadoMensaje.LLEGO){
                    llegaACKaA.horaOcurrencia = master.reloj + W +1.25;
              }
         }

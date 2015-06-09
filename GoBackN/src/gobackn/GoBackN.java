@@ -24,8 +24,6 @@ public class GoBackN {
     List<Mensaje> ventana;
     List<Mensaje> colaEnviador;
     List<Mensaje> colaB;
-    List<Mensaje> mensajesEnviados;
-    List<Mensaje> ACKenviados;
     public boolean aLibre;
     public boolean bLibre;
     public int ultimoACKRecibido;

@@ -56,7 +56,7 @@ public class LiberaA extends Evento {
             this.horaOcurrencia = master.reloj + Y +1;
             master.aLibre = false;
             Mensaje m = master.colaEnviador.get(0);
-            master.timer[master.ventana.indexOf(m)] =  master.timer[master.ventana.indexOf(m)] = master.reloj + master.tTimer + Y +1;;
+            master.timer[master.ventana.indexOf(m)] =  master.timer[master.ventana.indexOf(m)] = master.reloj + master.tTimer + Y +1;
             Distribuidor.EstadoMensaje estado = distribuidor.distribucionLlegaMensajeB();
             if (estado == Distribuidor.EstadoMensaje.ERROR || estado == Distribuidor.EstadoMensaje.LLEGO) {
                 if (estado == Distribuidor.EstadoMensaje.ERROR) {
@@ -68,7 +68,7 @@ public class LiberaA extends Evento {
                     m.setConError(false);
                 }
                 llegaFrameB.horaOcurrencia = master.reloj + Y + 2;
-                master.mensajesEnviados.add(m);
+                master.colaB.add(m);
             }
             if (estado == Distribuidor.EstadoMensaje.PERDIDO) {
                 m.setEnviado(false);

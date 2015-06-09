@@ -69,7 +69,7 @@ public class LlegaMsjA extends Evento {
                     m.setConError(false);
                 }
                 llegaFrameB.horaOcurrencia = master.reloj + Y + 2;
-                master.mensajesEnviados.add(m);
+                master.colaB.add(m);
             }
           }
         }
