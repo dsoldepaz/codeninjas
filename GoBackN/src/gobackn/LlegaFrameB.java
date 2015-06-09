@@ -46,7 +46,6 @@ public class LlegaFrameB extends Evento {
         master.reloj = this.horaOcurrencia;
         
         if(master.bLibre){
-            Mensaje ack;
             Mensaje msj = master.colaB.remove(0);
             master.bLibre = false;
             liberaB.horaOcurrencia = master.reloj+W+0.25;
@@ -60,7 +59,7 @@ public class LlegaFrameB extends Evento {
                    llegaACKaA.horaOcurrencia = master.reloj + W +1.25;
              }
         }
-        
+        horaOcurrencia=Double.MAX_VALUE;
     }
         @Override
     public String getNombre() {

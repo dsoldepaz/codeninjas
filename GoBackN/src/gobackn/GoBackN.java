@@ -73,6 +73,7 @@ public class GoBackN {
         interfaz.setLocationRelativeTo(null);
         interfaz.setVisible(true);
 
+        
         for (Evento e : evento) {
             e.setHoraOcurrencia(Double.MAX_VALUE);
         }

@@ -49,9 +49,6 @@ public class VenceTimer extends Evento {
         for(Mensaje m: master.ventana){
             m.setEnviado(false);
         }
-        for(Double d : master.timer){
-            d= Double.MAX_VALUE;
-        }
         if(master.aLibre){
             master.aLibre=false;            
             master.timer[0] = master.reloj + master.tTimer + Y;
