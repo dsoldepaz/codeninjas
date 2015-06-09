@@ -35,6 +35,7 @@ public class GoBackN {
     Interfaz interfaz;
     int numeroMsj;
     int numeroSimulacion;
+    int frameEsperado;
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
@@ -53,7 +54,6 @@ public class GoBackN {
         aLibre = true;
         bLibre = true;
         timer = new double[8];
-        numeroMsj = 0;
         numeroSimulacion = 0;
 
         for (int i = 0; i < timer.length; ++i) {
@@ -66,7 +66,7 @@ public class GoBackN {
         colaEnviador = new ArrayList<>();
         colaB = new ArrayList<>();
         HistorialRecibidosB = new ArrayList<>();
-        
+
         evento = new Evento[6];
         evento[0] = LlegaMsjA.getInstance();
         evento[1] = LiberaA.getInstance();
@@ -74,7 +74,7 @@ public class GoBackN {
         evento[3] = LlegaACKaA.getInstance();
         evento[4] = LlegaFrameB.getInstance();
         evento[5] = VenceTimer.getInstance();
-        
+
         interfaz = new Interfaz();
         interfaz.setLocationRelativeTo(null);
         interfaz.setVisible(true);
@@ -87,9 +87,14 @@ public class GoBackN {
     }
 
     public void simular(int veces, double tTimer, double tMax, boolean modoLento) {
+        this.tTimer = tTimer;
         for (int i = 0; i < veces; i++) {
+            //reiniciar 
             numeroSimulacion = i;
-            this.tTimer = tTimer;
+            numeroMsj = 0;
+            frameEsperado = 1;
+
+            //ciclo de simulación
             while (reloj < tMax) {
                 //escoger el próximo evento
                 for (Evento e : evento) {
@@ -129,7 +134,7 @@ public class GoBackN {
         interfaz.printT("Mensajes en cola A: { ");
         for (int i = 20; i > 8; i--) {
             try {
-                interfaz.printT("["+colaA.get(i).getNumero() + "] ");
+                interfaz.printT("[" + colaA.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
@@ -138,7 +143,7 @@ public class GoBackN {
         interfaz.printT("| ");//ventana
         for (int i = 7; i >= 0; i--) {
             try {
-                interfaz.printT("["+ventana.get(i).getNumero() + "] ");
+                interfaz.printT("[" + ventana.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
@@ -150,19 +155,20 @@ public class GoBackN {
         interfaz.printT("Cola de frames por recibir en B: { ");
         for (int i = 0; i < 20; i++) {
             try {
-                interfaz.printT("["+colaB.get(i).getNumero() + "] ");
+                interfaz.printT("[" + colaB.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
 
         }
         interfaz.printL("}");
+        interfaz.printL("Frame esperado: " + frameEsperado);
         interfaz.printL("Total de frames recibidos por B: " + HistorialRecibidosB.size());
         interfaz.printL("Último ACK enviado por B: " + ultimoACKEnviadoPorB);
         interfaz.printT("Historial de frames recibidos: { ");
         for (int i = HistorialRecibidosB.size() - 21; i < HistorialRecibidosB.size() - 1; i++) {
             try {
-                interfaz.printT("["+HistorialRecibidosB.get(i).getNumero() + "] ");
+                interfaz.printT("[" + HistorialRecibidosB.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
