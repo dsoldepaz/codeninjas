@@ -124,19 +124,19 @@ public class GoBackN {
         interfaz.printL("Longitud cola A: " + longitudTotal);
         interfaz.printL("Último ACK recibido en A: " + ultimoACKRecibido);
 
-        interfaz.printT("Mensajes en cola A: {");
+        interfaz.printT("Mensajes en cola A: { ");
         for (int i = 20; i > 8; i--) {
             try {
-                interfaz.printT(colaA.get(i).getNumero() + ", ");
+                interfaz.printT("["+colaA.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
 
         }
-        interfaz.printT("|");//ventana
+        interfaz.printT("| ");//ventana
         for (int i = 7; i >= 0; i--) {
             try {
-                interfaz.printT(ventana.get(i).getNumero() + ", ");
+                interfaz.printT("["+ventana.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
@@ -145,10 +145,10 @@ public class GoBackN {
         interfaz.printL("}");
 
         interfaz.printL("---");
-        interfaz.printT("Cola de frames por recibir en B: {");
+        interfaz.printT("Cola de frames por recibir en B: { ");
         for (int i = 0; i < 20; i++) {
             try {
-                interfaz.printT(colaB.get(i).getNumero() + ", ");
+                interfaz.printT("["+colaB.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
@@ -157,10 +157,10 @@ public class GoBackN {
         interfaz.printL("}");
         interfaz.printL("Total de frames recibidos por B: " + totalRecibidosB.size());
         interfaz.printL("Último ACK enviado por B: " + ultimoACKEnviado);
-        interfaz.printT("Historial de frames recibidos: {");
+        interfaz.printT("Historial de frames recibidos: { ");
         for (int i = totalRecibidosB.size() - 21; i < totalRecibidosB.size() - 1; i++) {
             try {
-                interfaz.printT(totalRecibidosB.get(i).getNumero() + ", ");
+                interfaz.printT("["+totalRecibidosB.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
