@@ -56,6 +56,7 @@ public class LiberaB extends Evento {
                 master.ultimoACKEnviado = msj.getNumero();
             } else {
                 master.ultimoACKEnviado = msj.getNumero() + 1;
+                master.totalRecibidosB.add(msj);
             }
             llegaACKaA.horaOcurrencia = master.reloj + w + 1.25;
             if (!(distribuidor.perdidoACK() == Distribuidor.EstadoMensaje.PERDIDO)) {

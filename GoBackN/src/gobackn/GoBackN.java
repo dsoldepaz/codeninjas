@@ -34,6 +34,7 @@ public class GoBackN {
     private static GoBackN instance = null;
     Interfaz interfaz;
     int numeroMsj;
+    int numeroSimulacion;
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
@@ -53,6 +54,7 @@ public class GoBackN {
         bLibre = true;
         timer = new double[8];
         numeroMsj = 0;
+        numeroSimulacion = 0;
 
         for (int i = 0; i < timer.length; ++i) {
             timer[i] = Double.MAX_VALUE;
@@ -84,6 +86,7 @@ public class GoBackN {
 
     public void simular(int veces, double tTimer, double tMax, boolean modoLento) {
         for (int i = 0; i < veces; i++) {
+            numeroSimulacion = i;
             this.tTimer = tTimer;
             while (reloj < tMax) {
                 //escoger el próximo evento
@@ -107,17 +110,18 @@ public class GoBackN {
     void actualizarEstado(boolean modoLento) {
         if (modoLento) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(666);
             } catch (InterruptedException ex) {
                 Logger.getLogger(GoBackN.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         interfaz.limpiar();
-        interfaz.printL("Simulación: ");
+        interfaz.printL("Simulación: " + numeroSimulacion);
         interfaz.printL("Reloj: " + reloj);
         interfaz.printL("Último evento procesado: " + actual.getNombre());
         interfaz.printL("---");
-        interfaz.printL("Longitud cola A: " + colaA.size());
+        int longitudTotal = colaA.size() + ventana.size();
+        interfaz.printL("Longitud cola A: " + longitudTotal);
         interfaz.printL("Último ACK recibido en A: " + ultimoACKRecibido);
 
         interfaz.printT("Mensajes en cola A: {");
@@ -130,7 +134,7 @@ public class GoBackN {
 
         }
         interfaz.printT("|");//ventana
-        for (int i = 7; i > 0; i--) {
+        for (int i = 7; i >= 0; i--) {
             try {
                 interfaz.printT(ventana.get(i).getNumero() + ", ");
             } catch (IndexOutOfBoundsException e) {
@@ -141,8 +145,6 @@ public class GoBackN {
         interfaz.printL("}");
 
         interfaz.printL("---");
-        interfaz.printL("Último ACK enviado por B: " + ultimoACKEnviado);
-        interfaz.printL("Total de frames recibidos por B: " + totalRecibidosB.size());
         interfaz.printT("Cola de frames por recibir en B: {");
         for (int i = 0; i < 20; i++) {
             try {
@@ -152,7 +154,9 @@ public class GoBackN {
             }
 
         }
+        interfaz.printL("}");
         interfaz.printL("Total de frames recibidos por B: " + totalRecibidosB.size());
+        interfaz.printL("Último ACK enviado por B: " + ultimoACKEnviado);
         interfaz.printT("Historial de frames recibidos: {");
         for (int i = totalRecibidosB.size() - 21; i < totalRecibidosB.size() - 1; i++) {
             try {
