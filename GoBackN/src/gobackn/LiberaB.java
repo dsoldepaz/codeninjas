@@ -60,7 +60,7 @@ public class LiberaB extends Evento {
                     master.HistorialRecibidosB.add(msj);
                     master.frameEsperado++;
                 } else {//llegó fuera de sequencia
-                    master.ultimoACKEnviadoPorB = msj.getNumero();
+                    master.ultimoACKEnviadoPorB = master.frameEsperado;
                 }
             }
             llegaACKaA.horaOcurrencia = master.reloj + w + 1.25;

@@ -59,7 +59,7 @@ public class LlegaFrameB extends Evento {
                     master.HistorialRecibidosB.add(msj);
                     master.frameEsperado++;
                 } else {//llegó fuera de sequencia
-                    master.ultimoACKEnviadoPorB = msj.getNumero();
+                    master.ultimoACKEnviadoPorB = master.frameEsperado;
                 }
 
             }
