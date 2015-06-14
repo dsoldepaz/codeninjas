@@ -74,7 +74,7 @@ public class LiberaA extends Evento {
                 m.setEnviado(false);
                 m.setConError(false);
             }
-            master.colaEnviador.remove(m);
+            master.colaEnviador.remove(0);
             venceTimer.setHoraOcurrencia(master.getMinimumValue(master.timer));
         }
     }

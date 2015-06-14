@@ -44,8 +44,10 @@ public class LlegaMsjA extends Evento {
         venceTimer = VenceTimer.getInstance();
         llegaFrameB = LlegaFrameB.getInstance();
         liberaA = LiberaA.getInstance();
+        
         double Y = distribuidor.distribucionConvertirMensaje();
         double X = distribuidor.distribucionLlegaMensajeA();
+        
         master.reloj = horaOcurrencia;
         ++master.numeroMsj;
         Mensaje nuevoMsj = new Mensaje(master.numeroMsj);

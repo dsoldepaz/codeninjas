@@ -49,7 +49,7 @@ public class VenceTimer extends Evento {
         
         //solo puede vencerse el primero y de igual forma hay que enviarlos todos
         for(Mensaje m: master.ventana){
-            m.setEnviado(false);
+            master.colaEnviador.add(m);
         }
         for (int i = 0 ; i < master.timer.length; ++i) {
             master.timer[i] = Double.MAX_VALUE;

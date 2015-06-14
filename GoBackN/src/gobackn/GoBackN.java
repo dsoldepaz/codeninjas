@@ -150,7 +150,16 @@ public class GoBackN {
 
         }
         interfaz.printL("}");
+        interfaz.printT("Cola del enviador: { ");
+        for (int i = 20; i >= 0; i--) {
+            try {
+                interfaz.printT("[" + colaEnviador.get(i).getNumero() + "] ");
+            } catch (IndexOutOfBoundsException e) {
 
+            }
+
+        }
+        interfaz.printL("}");
         interfaz.printL("---");
         interfaz.printT("Cola de frames por recibir en B: { ");
         for (int i = 0; i < 20; i++) {

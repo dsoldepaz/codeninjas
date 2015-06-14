@@ -43,16 +43,26 @@ public class LlegaACKaA extends Evento {
 
         master.reloj = horaOcurrencia;
         horaOcurrencia = Double.MAX_VALUE;
+        master.ultimoACKRecibidoPorA = master.ultimoACKEnviadoPorB;
+        if (!master.ventana.isEmpty()) {
+            for (int i = master.ventana.get(0).getNumero(); i <= master.ultimoACKRecibidoPorA - 1; i++) {
+                try {
+                    Mensaje m = master.ventana.remove(0);
+                    int tamCola = master.colaEnviador.size();
+                    for (int c = 0; c < tamCola; c++) {
+                        if (m.getNumero() == master.colaEnviador.get(c).getNumero()) {
+                            master.colaEnviador.remove(c);
+                            c=0;
+                        }
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                }
+                for (int t = 0; t < 7; t++) {
+                    master.timer[t] = master.timer[t + 1];
+                }
+                master.timer[7] = Double.MAX_VALUE;
+            }
 
-        for (int i = master.ventana.get(0).getNumero(); i < master.ultimoACKRecibidoPorA - 1; i++) {
-            try {
-                master.ventana.remove(0);
-            } catch (IndexOutOfBoundsException e) {
-            }
-            for (int t = 0; t < 7; t++) {
-                master.timer[t] = master.timer[t + 1];
-            }
-            master.timer[7] = Double.MAX_VALUE;
         }
         venceTimer.setHoraOcurrencia(master.timer[0]);
         if (!master.colaA.isEmpty()) {
