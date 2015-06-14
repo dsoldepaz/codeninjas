@@ -39,7 +39,7 @@ public class GoBackN {
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
-        gbn.simular(1, 12, 1000, true);//una vez, timer, tiempo max, modo lento
+        gbn.simular(1, 12, 1000, false);//una vez, timer, tiempo max, modo lento
     }
 
     public static GoBackN getInstance() {

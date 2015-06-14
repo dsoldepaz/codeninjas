@@ -43,8 +43,12 @@ public class LlegaACKaA extends Evento {
 
         master.reloj = horaOcurrencia;
         horaOcurrencia = Double.MAX_VALUE;
+
         for (int i = master.ventana.get(0).getNumero(); i < master.ultimoACKRecibidoPorA - 1; i++) {
-            master.ventana.remove(0);
+            try {
+                master.ventana.remove(0);
+            } catch (IndexOutOfBoundsException e) {
+            }
             for (int t = 0; t < 7; t++) {
                 master.timer[t] = master.timer[t + 1];
             }
