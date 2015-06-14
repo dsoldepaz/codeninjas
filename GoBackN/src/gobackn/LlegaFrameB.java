@@ -52,7 +52,7 @@ public class LlegaFrameB extends Evento {
             master.bLibre = false;
             liberaB.horaOcurrencia = master.reloj + W + 0.25;
             if (msj.getConError()) {
-                master.ultimoACKEnviadoPorB = msj.getNumero();
+                master.ultimoACKEnviadoPorB = master.frameEsperado;
             } else {
                 if (msj.getNumero() == master.frameEsperado) {//está en sequencia correcta
                     master.ultimoACKEnviadoPorB = msj.getNumero() + 1;
