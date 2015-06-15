@@ -66,12 +66,13 @@ public class LlegaACKaA extends Evento {
                 }
             }
         }
-
         venceTimer.setHoraOcurrencia(master.timer[0]);
         if (!master.colaA.isEmpty()) {
             for (int i = master.ventana.size(); i < 8; i++) {
                 try {
-                    master.ventana.add(master.colaA.remove(0));
+                    Mensaje x = master.colaA.remove(0);
+                    master.ventana.add(x);
+                    master.colaEnviador.add(x);
                 } catch (IndexOutOfBoundsException e) {
 
                 }

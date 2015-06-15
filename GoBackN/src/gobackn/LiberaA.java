@@ -45,8 +45,7 @@ public class LiberaA extends Evento {
         venceTimer = VenceTimer.getInstance();
         llegaFrameB = LlegaFrameB.getInstance();
         double Y = distribuidor.distribucionConvertirMensaje();
-        master.reloj = horaOcurrencia;
-        
+        master.reloj = horaOcurrencia;       
         
         if (master.colaEnviador.isEmpty()) {
             master.aLibre = true;

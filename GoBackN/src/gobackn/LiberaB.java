@@ -66,6 +66,7 @@ public class LiberaB extends Evento {
             llegaACKaA.horaOcurrencia = master.reloj + w + 1.25;
             if (distribuidor.perdidoACK() == Distribuidor.EstadoMensaje.LLEGO) {
                 llegaACKaA.horaOcurrencia = master.reloj + w + 1.25;
+                master.ultimoACKRecibidoPorA = master.ultimoACKEnviadoPorB;
             }
         }
 
