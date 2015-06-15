@@ -44,26 +44,35 @@ public class LlegaACKaA extends Evento {
         master.reloj = horaOcurrencia;
         horaOcurrencia = Double.MAX_VALUE;
         master.ultimoACKRecibidoPorA = master.ultimoACKEnviadoPorB;
+
         if (!master.ventana.isEmpty()) {
-            for (int i = master.ventana.get(0).getNumero(); i <= master.ultimoACKRecibidoPorA - 1; i++) {
-                try {
-                    Mensaje m = master.ventana.remove(0);
-                    int tamCola = master.colaEnviador.size();
-                    for (int c = 0; c < tamCola; c++) {
-                        if (m.getNumero() == master.colaEnviador.get(c).getNumero()) {
-                            master.colaEnviador.remove(c);
-                            c=0;
+            int m = master.ventana.get(0).getNumero();
+            while (m < master.ultimoACKRecibidoPorA) {
+                master.ventana.remove(0);
+                if (!master.colaEnviador.isEmpty()) {
+                    int c = master.colaEnviador.get(0).getNumero();
+                    while (c < master.ultimoACKRecibidoPorA) {
+                        master.colaEnviador.remove(0);
+                        if (!master.colaEnviador.isEmpty()) {
+                            c = master.colaEnviador.get(0).getNumero();
+                        } else {
+                            c = master.ultimoACKRecibidoPorA;
                         }
                     }
-                } catch (IndexOutOfBoundsException e) {
                 }
+                //correr los timers hacia la derecha
                 for (int t = 0; t < 7; t++) {
                     master.timer[t] = master.timer[t + 1];
                 }
                 master.timer[7] = Double.MAX_VALUE;
+                if (!master.ventana.isEmpty()) {
+                    m = master.ventana.get(0).getNumero();
+                } else {
+                    m = master.ultimoACKRecibidoPorA;
+                }
             }
-
         }
+
         venceTimer.setHoraOcurrencia(master.timer[0]);
         if (!master.colaA.isEmpty()) {
             for (int i = master.ventana.size(); i < 8; i++) {

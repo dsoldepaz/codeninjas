@@ -39,7 +39,7 @@ public class GoBackN {
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
-        gbn.simular(1, 12, 1000, false);//una vez, timer, tiempo max, modo lento
+        gbn.simular(1, 15, 100000, false);//una vez, timer, tiempo max, modo lento
     }
 
     public static GoBackN getInstance() {
@@ -78,6 +78,7 @@ public class GoBackN {
         interfaz = new Interfaz();
         interfaz.setLocationRelativeTo(null);
         interfaz.setVisible(true);
+        interfaz.requestFocus();
 
         for (Evento e : evento) {
             e.setHoraOcurrencia(Double.MAX_VALUE);
@@ -132,7 +133,7 @@ public class GoBackN {
         interfaz.printL("Último ACK recibido en A: " + ultimoACKRecibidoPorA);
 
         interfaz.printT("Mensajes en cola A: { ");
-        for (int i = 20; i > 8; i--) {
+        for (int i = 20; i > 0; i--) {
             try {
                 interfaz.printT("[" + colaA.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
