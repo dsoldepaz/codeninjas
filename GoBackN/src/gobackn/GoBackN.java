@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,7 +41,27 @@ public class GoBackN {
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
-        gbn.simular(2, 25, 100, true);// veces, timer, tiempo max, modo lento
+        String veces = JOptionPane.showInputDialog("Número de veces que se va a correr la simulación:", "10");
+        if (veces == null) {
+            JOptionPane.showMessageDialog(null, "Se canceló la simulación");
+            System.exit(0);
+        }
+        String tMax = JOptionPane.showInputDialog("Tiempo total en segundos para correr cada vez la simulación:", "2000");
+        if (tMax == null) {
+            JOptionPane.showMessageDialog(null, "Se canceló la simulación");
+            System.exit(0);
+        }
+        String timer = JOptionPane.showInputDialog("El tiempo de espera en A para reenvío de un frame:", "12");
+        if (timer == null) {
+            JOptionPane.showMessageDialog(null, "Se canceló la simulación");
+            System.exit(0);
+        }
+        int modoLento = JOptionPane.showConfirmDialog(null, "¿Desea ver la simulación correr en modo lento?", "", JOptionPane.YES_NO_OPTION);        
+        boolean lento = false;
+        if (modoLento == JOptionPane.YES_OPTION) {
+            lento = true;
+        }
+        gbn.simular(Integer.parseInt(veces), Integer.parseInt(timer), Integer.parseInt(tMax), lento);// veces, timer, tiempo max, modo lento
     }
 
     public static GoBackN getInstance() {
