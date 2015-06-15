@@ -61,10 +61,10 @@ public class LlegaFrameB extends Evento {
                 } else {//llegó fuera de sequencia
                     master.ultimoACKEnviadoPorB = master.frameEsperado;
                 }
-
             }
             if (distribuidor.perdidoACK() == Distribuidor.EstadoMensaje.LLEGO) {
                 llegaACKaA.horaOcurrencia = master.reloj + w + 1.25;
+                master.ultimoACKRecibidoPorA = master.ultimoACKEnviadoPorB;
             }
         }
         horaOcurrencia = Double.MAX_VALUE;

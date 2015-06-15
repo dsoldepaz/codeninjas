@@ -11,22 +11,24 @@ package gobackn;
  */
 public class LlegaMsjA extends Evento {
 
-   private static LlegaMsjA instance = null;
-   private GoBackN master;
-   private Distribuidor distribuidor;
-   private VenceTimer venceTimer;
-   private LlegaFrameB llegaFrameB;
-   private LiberaA liberaA;
-   
-   protected LlegaMsjA() {
-      
-   }
-   public static LlegaMsjA getInstance() {
-      if(instance == null) {
-         instance = new LlegaMsjA();
-      }
-      return instance;
-   }
+    private static LlegaMsjA instance = null;
+    private GoBackN master;
+    private Distribuidor distribuidor;
+    private VenceTimer venceTimer;
+    private LlegaFrameB llegaFrameB;
+    private LiberaA liberaA;
+
+    protected LlegaMsjA() {
+
+    }
+
+    public static LlegaMsjA getInstance() {
+        if (instance == null) {
+            instance = new LlegaMsjA();
+        }
+        return instance;
+    }
+
     @Override
     public double getHoraOcurrencia() {
         return horaOcurrencia;
@@ -34,7 +36,7 @@ public class LlegaMsjA extends Evento {
 
     @Override
     public double setHoraOcurrencia(double val) {
-        return horaOcurrencia=val;
+        return horaOcurrencia = val;
     }
 
     @Override
@@ -44,47 +46,47 @@ public class LlegaMsjA extends Evento {
         venceTimer = VenceTimer.getInstance();
         llegaFrameB = LlegaFrameB.getInstance();
         liberaA = LiberaA.getInstance();
-        
+
         double Y = distribuidor.distribucionConvertirMensaje();
         double X = distribuidor.distribucionLlegaMensajeA();
-        
+
         master.reloj = horaOcurrencia;
         ++master.numeroMsj;
         Mensaje nuevoMsj = new Mensaje(master.numeroMsj);
-        
-        if(master.ventana.size() >= 8){
-          master.colaA.add(nuevoMsj);
-        }
-        else{
-          master.ventana.add(nuevoMsj);
-          master.colaEnviador.add(nuevoMsj);
-          if(master.aLibre){
-            master.aLibre = false;
-            Mensaje m = master.colaEnviador.get(0);
-            master.timer[master.ventana.indexOf(m)] = master.reloj + master.tTimer+ X +1;
-            liberaA.horaOcurrencia = master.reloj + Y + X+1;
-            Distribuidor.EstadoMensaje estado = distribuidor.distribucionLlegaMensajeB();
-            if (estado == Distribuidor.EstadoMensaje.ERROR || estado == Distribuidor.EstadoMensaje.LLEGO) {
-                if (estado == Distribuidor.EstadoMensaje.ERROR) {
-                    m.setConError(true);
-                    m.setEnviado(true);
+
+        if (master.ventana.size() >= 8) {
+            master.colaA.add(nuevoMsj);
+        } else {
+            master.ventana.add(nuevoMsj);
+            master.colaEnviador.add(nuevoMsj);
+            if (master.aLibre) {
+                master.aLibre = false;
+                Mensaje m = master.colaEnviador.get(0);
+                master.timer[master.ventana.indexOf(m)] = master.reloj + master.tTimer + X + 1;
+                liberaA.horaOcurrencia = master.reloj + Y + X + 1;
+                Distribuidor.EstadoMensaje estado = distribuidor.distribucionLlegaMensajeB();
+                if (estado == Distribuidor.EstadoMensaje.ERROR || estado == Distribuidor.EstadoMensaje.LLEGO) {
+                    if (estado == Distribuidor.EstadoMensaje.ERROR) {
+                        m.setConError(true);
+                        m.setEnviado(true);
+                    }
+                    if (estado == Distribuidor.EstadoMensaje.LLEGO) {
+                        m.setEnviado(true);
+                        m.setConError(false);
+                    }
+                    llegaFrameB.horaOcurrencia = master.reloj + X + Y + 2;
+                    venceTimer.setHoraOcurrencia(master.getMinimumValue(master.timer));
+                    master.colaB.add(m);
                 }
-                if (estado == Distribuidor.EstadoMensaje.LLEGO) {
-                    m.setEnviado(true);
-                    m.setConError(false);
-                }
-                llegaFrameB.horaOcurrencia = master.reloj+X +Y + 2;
-                venceTimer.setHoraOcurrencia(master.getMinimumValue(master.timer));
-                master.colaB.add(m);
             }
-          }
         }
 
-        this.horaOcurrencia = master.reloj + X;   
+        this.horaOcurrencia = master.reloj + X;
     }
-        @Override
+
+    @Override
     public String getNombre() {
         return "Llega Mensaje a A";
     }
-    
+
 }

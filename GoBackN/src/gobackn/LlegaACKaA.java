@@ -43,32 +43,26 @@ public class LlegaACKaA extends Evento {
 
         master.reloj = horaOcurrencia;
         horaOcurrencia = Double.MAX_VALUE;
-        master.ultimoACKRecibidoPorA = master.ultimoACKEnviadoPorB;
+        master.ultimoACKProcesadoPorA = master.ultimoACKRecibidoPorA;
 
         if (!master.ventana.isEmpty()) {
             int m = master.ventana.get(0).getNumero();
-            while (m < master.ultimoACKRecibidoPorA) {
-                master.ventana.remove(0);
-                if (!master.colaEnviador.isEmpty()) {
-                    int c = master.colaEnviador.get(0).getNumero();
-                    while (c < master.ultimoACKRecibidoPorA) {
-                        master.colaEnviador.remove(0);
-                        if (!master.colaEnviador.isEmpty()) {
-                            c = master.colaEnviador.get(0).getNumero();
-                        } else {
-                            c = master.ultimoACKRecibidoPorA;
-                        }
-                    }
+            while (m < master.ultimoACKProcesadoPorA) {
+                Mensaje r = master.ventana.remove(0);
+                //quitar tambien del enviador
+                while (master.colaEnviador.contains(r)) {
+                    master.colaEnviador.remove(r);
                 }
                 //correr los timers hacia la derecha
                 for (int t = 0; t < 7; t++) {
                     master.timer[t] = master.timer[t + 1];
                 }
                 master.timer[7] = Double.MAX_VALUE;
+                //ver si hay más por quitar
                 if (!master.ventana.isEmpty()) {
                     m = master.ventana.get(0).getNumero();
                 } else {
-                    m = master.ultimoACKRecibidoPorA;
+                    m = master.ultimoACKProcesadoPorA;
                 }
             }
         }

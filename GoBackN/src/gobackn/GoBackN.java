@@ -28,7 +28,8 @@ public class GoBackN {
     public boolean aLibre;
     public boolean bLibre;
     public int ultimoACKRecibidoPorA;
-    public int ultimoACKEnviadoPorB;
+    public int  ultimoACKProcesadoPorA;
+    public int ultimoACKEnviadoPorB;    
     Evento[] evento;
     Evento actual;
     private static GoBackN instance = null;
@@ -60,6 +61,7 @@ public class GoBackN {
             timer[i] = Double.MAX_VALUE;
         }
         ultimoACKRecibidoPorA = 0;
+        ultimoACKProcesadoPorA = 0;
         ultimoACKEnviadoPorB = 0;
         colaA = new ArrayList<>();
         ventana = new ArrayList<>();
@@ -130,7 +132,7 @@ public class GoBackN {
         interfaz.printL("---");
         int longitudTotal = colaA.size() + ventana.size();
         interfaz.printL("Longitud cola A: " + longitudTotal);
-        interfaz.printL("Último ACK recibido en A: " + ultimoACKRecibidoPorA);
+        interfaz.printL("Último ACK procesado en A: " + ultimoACKProcesadoPorA);
 
         interfaz.printT("Mensajes en cola A: { ");
         for (int i = 20; i > 0; i--) {
@@ -176,7 +178,7 @@ public class GoBackN {
         interfaz.printL("Total de frames recibidos por B: " + HistorialRecibidosB.size());
         interfaz.printL("Último ACK enviado por B: " + ultimoACKEnviadoPorB);
         interfaz.printT("Historial de frames recibidos: { ");
-        for (int i = HistorialRecibidosB.size() - 21; i < HistorialRecibidosB.size() - 1; i++) {
+        for (int i = HistorialRecibidosB.size() - 1; i > HistorialRecibidosB.size() - 21; i--) {
             try {
                 interfaz.printT("[" + HistorialRecibidosB.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
