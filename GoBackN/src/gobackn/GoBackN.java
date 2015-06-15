@@ -36,6 +36,7 @@ public class GoBackN {
     Interfaz interfaz;
     int numeroMsj;
     int frameEsperado;
+    public Estadisticador estadisticador; 
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
@@ -85,6 +86,8 @@ public class GoBackN {
         }
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
         actual = evento[0];
+        
+        estadisticador = new Estadisticador();
     }
 
     public void simular(int veces, double tTimer, double tMax, boolean modoLento) {

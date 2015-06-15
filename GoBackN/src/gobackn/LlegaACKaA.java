@@ -48,7 +48,9 @@ public class LlegaACKaA extends Evento {
         if (!master.ventana.isEmpty()) {
             int m = master.ventana.get(0).getNumero();
             while (m < master.ultimoACKProcesadoPorA) {
+                
                 Mensaje r = master.ventana.remove(0);
+                master.estadisticador.tiempoPermanencia.add(master.reloj-r.getTiempoDeLlegada());
                 //quitar tambien del enviador
                 while (master.colaEnviador.contains(r)) {
                     master.colaEnviador.remove(r);
@@ -70,6 +72,7 @@ public class LlegaACKaA extends Evento {
         if (!master.colaA.isEmpty()) {
             for (int i = master.ventana.size(); i < 8; i++) {
                 try {
+                    
                     Mensaje x = master.colaA.remove(0);
                     master.ventana.add(x);
                     master.colaEnviador.add(x);

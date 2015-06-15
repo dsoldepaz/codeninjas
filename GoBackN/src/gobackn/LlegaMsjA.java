@@ -80,7 +80,7 @@ public class LlegaMsjA extends Evento {
                 }
             }
         }
-
+       master.estadisticador.tamanyoLista.add(master.colaA.size() + master.ventana.size());
         this.horaOcurrencia = master.reloj + X;
     }
 
