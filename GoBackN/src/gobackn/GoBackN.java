@@ -28,19 +28,18 @@ public class GoBackN {
     public boolean aLibre;
     public boolean bLibre;
     public int ultimoACKRecibidoPorA;
-    public int  ultimoACKProcesadoPorA;
-    public int ultimoACKEnviadoPorB;    
+    public int ultimoACKProcesadoPorA;
+    public int ultimoACKEnviadoPorB;
     Evento[] evento;
     Evento actual;
     private static GoBackN instance = null;
     Interfaz interfaz;
     int numeroMsj;
-    int numeroSimulacion;
     int frameEsperado;
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
-        gbn.simular(1, 25, 100000, false);//una vez, timer, tiempo max, modo lento
+        gbn.simular(2, 25, 100, true);// veces, timer, tiempo max, modo lento
     }
 
     public static GoBackN getInstance() {
@@ -55,7 +54,6 @@ public class GoBackN {
         aLibre = true;
         bLibre = true;
         timer = new double[8];
-        numeroSimulacion = 0;
 
         for (int i = 0; i < timer.length; ++i) {
             timer[i] = Double.MAX_VALUE;
@@ -93,9 +91,7 @@ public class GoBackN {
         this.tTimer = tTimer;
         for (int i = 0; i < veces; i++) {
             //reiniciar 
-            numeroSimulacion = i;
-            numeroMsj = 0;
-            frameEsperado = 1;
+            reiniciar();
 
             //ciclo de simulación
             while (reloj < tMax) {
@@ -108,16 +104,16 @@ public class GoBackN {
                 //ejecutar el evento
                 actual.ejecutar();
                 //actualizar estado
-                actualizarEstado(modoLento);
+                actualizarEstado(modoLento, i);
             }
-            //guardar estadisticas de esta simulación
+            //estadisticas de esta simulación
 
         }
         //imprimir estadisticas de todas
 
     }
 
-    void actualizarEstado(boolean modoLento) {
+    void actualizarEstado(boolean modoLento, int vez) {
         if (modoLento) {
             try {
                 Thread.sleep(666);
@@ -126,7 +122,7 @@ public class GoBackN {
             }
         }
         interfaz.limpiar();
-        interfaz.printL("Simulación: " + numeroSimulacion);
+        interfaz.printL("Simulación: " + vez);
         interfaz.printL("Reloj: " + reloj);
         interfaz.printL("Último evento procesado: " + actual.getNombre());
         interfaz.printL("---");
@@ -198,6 +194,31 @@ public class GoBackN {
             }
         }
         return val;
+    }
+
+    void reiniciar() {
+        numeroMsj = 0;
+        frameEsperado = 1;
+        for (int it = 0; it < timer.length; ++it) {
+            timer[it] = Double.MAX_VALUE;
+        }
+        ultimoACKRecibidoPorA = 0;
+        ultimoACKProcesadoPorA = 0;
+        ultimoACKEnviadoPorB = 0;
+
+        reloj = 0;
+        aLibre = true;
+        bLibre = true;
+        colaA.clear();
+        ventana.clear();
+        colaEnviador.clear();
+        colaB.clear();
+        HistorialRecibidosB.clear();
+        for (Evento e : evento) {
+            e.setHoraOcurrencia(Double.MAX_VALUE);
+        }
+        LlegaMsjA.getInstance().setHoraOcurrencia(0);
+        actual = evento[0];
     }
 
 }
