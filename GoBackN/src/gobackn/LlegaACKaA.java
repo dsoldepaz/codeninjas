@@ -44,7 +44,8 @@ public class LlegaACKaA extends Evento {
         master.reloj = horaOcurrencia;
         horaOcurrencia = Double.MAX_VALUE;
         master.ultimoACKProcesadoPorA = master.ultimoACKRecibidoPorA;
-        master.estadisticador.tamanyoLista.add(master.colaA.size() + master.ventana.size());
+        double tam= (double)(master.colaA.size() + master.ventana.size());
+        master.estadisticador.tamanyoLista.add(tam);
         master.estadisticador.tiempoTamanyoLista.add(master.reloj - master.estadisticador.tiempoUltimoAgregado);
         
         if (!master.ventana.isEmpty()) {
@@ -69,7 +70,8 @@ public class LlegaACKaA extends Evento {
                 } else {
                     m = master.ultimoACKProcesadoPorA;
                 }
-                master.estadisticador.tamanyoLista.add( master.ventana.size() + master.colaA.size());
+                 double tamL= (double)(master.ventana.size() + master.colaA.size());
+                master.estadisticador.tamanyoLista.add( tamL);
             }
         }
         venceTimer.setHoraOcurrencia(master.timer[0]);

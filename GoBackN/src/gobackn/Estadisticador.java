@@ -13,11 +13,11 @@ import java.util.List;
 public class Estadisticador {
     public List<Double> tiempoTransmision;
     public List<Double> tiempoPermanencia;
-    public List<Integer> tamanyoLista;
+    public List<Double> tamanyoLista;
     public double tiempoUltimoAgregado ;
     public List<Double> tiempoTamanyoLista;
     
-    public double PromedioTamnyo = 0;
+    public double PromedioTamanyo = 0;
     public double PromedioTiempoPermanencia = 0;
     public double PromedioTransmision = 0;
     public double PromedioDeServicio = 0;
@@ -62,8 +62,8 @@ public class Estadisticador {
     public String estadisticasDelPrograma(){
         String res = "";
        
-        res = "Tamaño promedio de la cola de A: " +PromedioTamnyo + "\n" +
-              "Tiempo promedio de Permacia de un mensaje en la cola: " +PromedioTiempoPermanencia + "\n" + 
+        res = "Tamaño promedio de la cola de A: " +PromedioTamanyo + "\n" +
+              "Tiempo promedio de permanencia de un mensaje en la cola: " +PromedioTiempoPermanencia + "\n" + 
               "Tiempo promedio de transmision: " + calcularPromedio(tiempoTransmision)+ "\n"+
                "Tiempo promedio de servicio: " + PromedioDeServicio+ "\n"+
                 "Eficiencia del sistema: " + Eficiencia;
@@ -72,7 +72,7 @@ public class Estadisticador {
     }
     
     public void calcularEstadisticas(){
-        PromedioTamnyo = (calcularPromedio(tamanyoLista));
+        PromedioTamanyo = (calcularPromedio(tamanyoLista));
         PromedioTiempoPermanencia = calcularPromedio(tiempoPermanencia);
         PromedioTransmision = calcularPromedio(tiempoTransmision);
         PromedioDeServicio = tiempoPromedioDeServicio();
