@@ -15,7 +15,6 @@ import java.util.List;
 public class Estadisticador {
 
     //Locales
-
     public List<Double> tiempoTransmision;
     public List<Double> tiempoPermanencia;
     public List<Double> tamanyoLista;
@@ -34,12 +33,14 @@ public class Estadisticador {
     public List<Double> tiempoPermanenciaGlobal;
     public List<Double> tiempoServicioGlobal;
     public List<Double> eficienciaGlobal;
-    
+
     public double PromedioTamanyoGlobal = 0;
     public double PromedioTiempoPermanenciaGlobal = 0;
     public double PromedioTransmisionGlobal = 0;
     public double PromedioDeServicioGlobal = 0;
     public double EficienciaGlobal = 0;
+    public double limIzquierdo;
+    public double limDerecho;
 
     public Estadisticador() {
         //locales
@@ -48,13 +49,14 @@ public class Estadisticador {
         tamanyoLista = new ArrayList<>();
         tiempoUltimoAgregado = 0;
         tiempoTamanyoLista = new ArrayList<>();
-        
+
         //globales
         tamanyoListaGlobal = new ArrayList<>();
         tiempoTransmisionGlobal = new ArrayList<>();
         tiempoPermanenciaGlobal = new ArrayList<>();
         tiempoServicioGlobal = new ArrayList<>();
         eficienciaGlobal = new ArrayList<>();
+
     }
 
     public double calcularPromedio(List l) {
@@ -105,28 +107,42 @@ public class Estadisticador {
         PromedioTransmision = calcularPromedio(tiempoTransmision);
         PromedioDeServicio = tiempoPromedioDeServicio();
         Eficiencia = eficiencia();
-        
+
         //guardar para globales
         tamanyoListaGlobal.add(PromedioTamanyo);
         tiempoPermanenciaGlobal.add(PromedioTiempoPermanencia);
-        tiempoTransmisionGlobal.add(PromedioTransmision);       
+        tiempoTransmisionGlobal.add(PromedioTransmision);
         tiempoServicioGlobal.add(PromedioDeServicio);
         eficienciaGlobal.add(Eficiencia);
 
     }
+
     void calcularEstadisticasGlobales() {
+        //promedios globales
         PromedioTamanyoGlobal = calcularPromedio(tamanyoListaGlobal);
         PromedioTiempoPermanenciaGlobal = calcularPromedio(tiempoPermanenciaGlobal);
         PromedioTransmisionGlobal = calcularPromedio(tiempoTransmisionGlobal);
         PromedioDeServicioGlobal = calcularPromedio(tiempoServicioGlobal);
         EficienciaGlobal = calcularPromedio(eficienciaGlobal);
+
+        //intervalo de confianza        
+        double sumatoria = 0;
+        for (Double t : tiempoPermanencia) {
+            sumatoria += t - PromedioTiempoPermanenciaGlobal;
+        }
+        double varianzaMuestral = Math.pow(2, sumatoria) / (tiempoPermanencia.size() - 1);
+        limIzquierdo = PromedioTiempoPermanenciaGlobal - 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanencia.size());
+        limDerecho = PromedioTiempoPermanenciaGlobal + 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanencia.size());
+
     }
+
     public String estadisticasGlobales() {
         String res = "Tamaño promedio de la cola de A: " + PromedioTamanyoGlobal + "\n"
                 + "Tiempo promedio de permanencia de un mensaje en la cola: " + PromedioTiempoPermanenciaGlobal + "\n"
                 + "Tiempo promedio de transmision: " + PromedioTransmisionGlobal + "\n"
                 + "Tiempo promedio de servicio: " + PromedioDeServicioGlobal + "\n"
-                + "Eficiencia del sistema: " + EficienciaGlobal;
+                + "Eficiencia promedio del sistema: " + EficienciaGlobal + "\n"
+                + "Intervalo de confianza al 95% para el tiempo promedio de permanencia en el sistema de cada mensaje: [ " + limIzquierdo + " , " + limDerecho + " ]";
 
         return res;
     }
