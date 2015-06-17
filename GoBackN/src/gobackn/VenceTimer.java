@@ -75,7 +75,7 @@ public class VenceTimer extends Evento {
                 llegaFrameB.horaOcurrencia = master.reloj + Y + 2;                
             }
         }else{
-                master.colaA.add(master.ventana.get(0));
+                master.colaEnviador.add(master.ventana.get(0));
                 master.timer[timerMenor] = Double.MAX_VALUE;
                 
         }
