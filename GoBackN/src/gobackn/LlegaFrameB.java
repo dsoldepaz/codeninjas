@@ -48,9 +48,16 @@ public class LlegaFrameB extends Evento {
         master.reloj = this.horaOcurrencia;
 
         if (master.bLibre) {
-            liberaB.horaOcurrencia = master.reloj + w + 0.25;
+            
             master.bLibre = false;
             Mensaje msj = master.colaB.remove(0);
+            if(master.colaB.isEmpty()){
+                 master.bLibre = true;
+                liberaB.horaOcurrencia = Double.MAX_VALUE;
+            }
+            else{
+                liberaB.horaOcurrencia = master.reloj + w + 0.25;
+            }
             if (msj.getConError()) {
                 master.ultimoACKEnviadoPorB = master.frameEsperado;
             } else {

@@ -15,6 +15,7 @@ public class LiberaB extends Evento {
     private GoBackN master;
     private LlegaACKaA llegaACKaA;
     private Distribuidor distribuidor;
+    private LlegaFrameB llegaFrameB; 
 
     protected LiberaB() {
 
@@ -42,16 +43,23 @@ public class LiberaB extends Evento {
         master = GoBackN.getInstance();
         distribuidor = Distribuidor.getInstance();
         llegaACKaA = LlegaACKaA.getInstance();
-
+        llegaFrameB = LlegaFrameB.getInstance();
+        
         master.reloj = horaOcurrencia;
         double w = distribuidor.revisaFrame();
-        if (master.colaB.isEmpty()) {
+        if (master.colaB.size() == 1 && llegaFrameB.horaOcurrencia != Double.MAX_VALUE ) {
             master.bLibre = true;
             horaOcurrencia = Double.MAX_VALUE;
         } else {
-            horaOcurrencia = master.reloj + w + 0.25;
             master.bLibre = false;
             Mensaje msj = master.colaB.remove(0);
+             if(master.colaB.isEmpty()){
+                 master.bLibre = true;
+                this.horaOcurrencia = Double.MAX_VALUE;
+            }
+            else{
+                this.horaOcurrencia = master.reloj + w + 0.25;
+            }
             if (msj.getConError()) {
                 master.ultimoACKEnviadoPorB = master.frameEsperado;
             } else {
