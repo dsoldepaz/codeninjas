@@ -128,11 +128,12 @@ public class GoBackN {
                 //ejecutar el evento
                 actual.ejecutar();
                 //actualizar estado
-                actualizarEstado(veces, tTimer, tMax, modoLento, i);
+                actualizarEstado(veces, tTimer, tMax, modoLento, i+1);
             }
             //estadisticas de esta simulación
             this.estadisticador.calcularEstadisticas();
-            interfaz.printT(this.estadisticador.estadisticasDelPrograma());
+            imprimirEstadisticasUnaSimulacion(i+1);
+            
             
         }
         //imprimir estadisticas de todas
@@ -147,70 +148,70 @@ public class GoBackN {
                 Logger.getLogger(GoBackN.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        interfaz.limpiar();
-        interfaz.printL("Simulación: " + vez + " de " + veces);
-        interfaz.printL("Tiempo total en segundos para correr cada vez la simulación: " + tMax);
-        interfaz.printL("El tiempo de espera en A para reenvío de un frame: " + tTimer);
-        interfaz.printL("Reloj: " + reloj);
-        interfaz.printL("Último evento procesado: " + actual.getNombre());
-        interfaz.printL("---");
+        interfaz.limpiarVar();        
+        interfaz.printLVar("Simulación: " + vez + " de " + veces);
+        interfaz.printLVar("Tiempo total en segundos para correr cada vez la simulación: " + tMax);
+        interfaz.printLVar("El tiempo de espera en A para reenvío de un frame: " + tTimer);
+        interfaz.printLVar("Reloj: " + reloj);
+        interfaz.printLVar("Último evento procesado: " + actual.getNombre());
+        interfaz.printLVar("---");
         int longitudTotal = colaA.size() + ventana.size();
-        interfaz.printL("Longitud cola A: " + longitudTotal);
-        interfaz.printL("Último ACK procesado en A: " + ultimoACKProcesadoPorA);
+        interfaz.printLVar("Longitud cola A: " + longitudTotal);
+        interfaz.printLVar("Último ACK procesado en A: " + ultimoACKProcesadoPorA);
 
-        interfaz.printT("Mensajes en cola A: { ");
+        interfaz.printTVar("Mensajes en cola A: { ");
         for (int i = 20; i >= 0; i--) {
             try {
-                interfaz.printT("[" + colaA.get(i).getNumero() + "] ");
+                interfaz.printTVar("[" + colaA.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
 
         }
-        interfaz.printT("| ");//ventana
+        interfaz.printTVar("| ");//ventana
         for (int i = 7; i >= 0; i--) {
             try {
-                interfaz.printT("[" + ventana.get(i).getNumero() + "] ");
+                interfaz.printTVar("[" + ventana.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
 
         }
-        interfaz.printL("}");
-        interfaz.printT("Cola del enviador: { ");
+        interfaz.printLVar("}");
+        interfaz.printTVar("Cola del enviador: { ");
         for (int i = 20; i >= 0; i--) {
             try {
-                interfaz.printT("[" + colaEnviador.get(i).getNumero() + "] ");
+                interfaz.printTVar("[" + colaEnviador.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
 
         }
-        interfaz.printL("}");
-        interfaz.printL("---");
-        interfaz.printT("Cola de frames por recibir en B: { ");
+        interfaz.printLVar("}");
+        interfaz.printLVar("---");
+        interfaz.printTVar("Cola de frames por recibir en B: { ");
         for (int i = 0; i < 20; i++) {
             try {
-                interfaz.printT("[" + colaB.get(i).getNumero() + "] ");
+                interfaz.printTVar("[" + colaB.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
 
         }
-        interfaz.printL("}");
-        interfaz.printL("Frame esperado: " + frameEsperado);
-        interfaz.printL("Total de frames recibidos por B: " + HistorialRecibidosB.size());
-        interfaz.printL("Último ACK enviado por B: " + ultimoACKEnviadoPorB);
-        interfaz.printT("Historial de frames recibidos: { ");
+        interfaz.printLVar("}");
+        interfaz.printLVar("Frame esperado: " + frameEsperado);
+        interfaz.printLVar("Total de frames recibidos por B: " + HistorialRecibidosB.size());
+        interfaz.printLVar("Último ACK enviado por B: " + ultimoACKEnviadoPorB);
+        interfaz.printTVar("Historial de frames recibidos: { ");
         for (int i = HistorialRecibidosB.size() - 1; i > HistorialRecibidosB.size() - 21; i--) {
             try {
-                interfaz.printT("[" + HistorialRecibidosB.get(i).getNumero() + "] ");
+                interfaz.printTVar("[" + HistorialRecibidosB.get(i).getNumero() + "] ");
             } catch (IndexOutOfBoundsException e) {
 
             }
 
         }
-        interfaz.printL("}");
+        interfaz.printLVar("}");
 
     }
 
@@ -247,6 +248,12 @@ public class GoBackN {
         }
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
         actual = evento[0];
+    }
+
+    private void imprimirEstadisticasUnaSimulacion(int vez) {
+        interfaz.printLEstad("Simulación: "+vez);
+        interfaz.printLEstad(this.estadisticador.estadisticasDelPrograma());
+        interfaz.printLEstad("---");
     }
 
 }
