@@ -47,21 +47,21 @@ public class LlegaFrameB extends Evento {
         double w = distribuidor.revisaFrame();
         master.reloj = this.horaOcurrencia;
 
-        if (master.bLibre && !master.colaB.isEmpty()) {
-            Mensaje msj = master.colaB.remove(0);
-            master.bLibre = false;
+        if (master.bLibre) {
             liberaB.horaOcurrencia = master.reloj + w + 0.25;
+            master.bLibre = false;
+            Mensaje msj = master.colaB.remove(0);
             if (msj.getConError()) {
                 master.ultimoACKEnviadoPorB = master.frameEsperado;
             } else {
-                if (msj.getNumero() == master.frameEsperado) {//está en sequencia correcta
+                 if (msj.getNumero() == master.frameEsperado) {//está en sequencia correcta
                     master.ultimoACKEnviadoPorB = msj.getNumero() + 1;
                     master.HistorialRecibidosB.add(msj);
                     master.frameEsperado++;
                 } else {//llegó fuera de sequencia
                     master.ultimoACKEnviadoPorB = master.frameEsperado;
                 }
-            }
+            }            
             if (distribuidor.perdidoACK() == Distribuidor.EstadoMensaje.LLEGO) {
                 llegaACKaA.horaOcurrencia = master.reloj + w + 1.25;
                 master.ultimoACKRecibidoPorA = master.ultimoACKEnviadoPorB;
