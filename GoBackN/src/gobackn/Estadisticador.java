@@ -16,6 +16,12 @@ public class Estadisticador {
     public List<Integer> tamanyoLista;
     public double tiempoUltimoAgregado ;
     public List<Double> tiempoTamanyoLista;
+    
+    public double PromedioTamnyo = 0;
+    public double PromedioTiempoPermanencia = 0;
+    public double PromedioTransmision = 0;
+    public double PromedioDeServicio = 0;
+    public double Eficiencia = 0;
     public Estadisticador(){
         tiempoTransmision = new ArrayList<>();
         tiempoPermanencia= new ArrayList<>();
@@ -55,12 +61,21 @@ public class Estadisticador {
     }
     public String estadisticasDelPrograma(){
         String res = "";
-        res = "Tamaño promedio de la cola de A: " + (calcularPromedio(tamanyoLista))+ "\n" +
-              "Tiempo promedio de Permacia de un mensaje en la cola: " + calcularPromedio(tiempoPermanencia)+ "\n" + 
+       
+        res = "Tamaño promedio de la cola de A: " +PromedioTamnyo + "\n" +
+              "Tiempo promedio de Permacia de un mensaje en la cola: " +PromedioTiempoPermanencia + "\n" + 
               "Tiempo promedio de transmision: " + calcularPromedio(tiempoTransmision)+ "\n"+
-               "Tiempo promedio de servicio: " + tiempoPromedioDeServicio()+ "\n"+
-                "Eficiencia del sistema: " + eficiencia()+ "\n";
+               "Tiempo promedio de servicio: " + PromedioDeServicio+ "\n"+
+                "Eficiencia del sistema: " + Eficiencia+ "\n";
               
         return res;
+    }
+    
+    public void calcularEstadisticas(){
+        PromedioTamnyo = (calcularPromedio(tamanyoLista));
+        PromedioTiempoPermanencia = calcularPromedio(tiempoPermanencia);
+        PromedioTransmision = calcularPromedio(tiempoTransmision);
+        PromedioDeServicio = tiempoPromedioDeServicio();
+        Eficiencia = eficiencia();
     }
 }
