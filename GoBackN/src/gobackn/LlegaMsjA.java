@@ -53,7 +53,7 @@ public class LlegaMsjA extends Evento {
         master.reloj = horaOcurrencia;
         ++master.numeroMsj;
         Mensaje nuevoMsj = new Mensaje(master.numeroMsj);
-         double tam= (double)(master.colaA.size() + master.ventana.size());
+        double tam= (double)(master.colaA.size() + master.ventana.size());
         master.estadisticador.tamanyoLista.add(tam);
         master.estadisticador.tiempoTamanyoLista.add(master.reloj - master.estadisticador.tiempoUltimoAgregado);
         if (master.ventana.size() >= 8) {

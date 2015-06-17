@@ -136,6 +136,8 @@ public class GoBackN {
 
         }
         //imprimir estadisticas de todas
+        this.estadisticador.calcularEstadisticasGlobales();
+        imprimirEstadisticasGlobales();
 
     }
 
@@ -252,8 +254,15 @@ public class GoBackN {
 
     private void imprimirEstadisticasUnaSimulacion(int vez) {
         interfaz.printLEstad("Simulación: " + vez);
-        interfaz.printLEstad(this.estadisticador.estadisticasDelPrograma());
+        interfaz.printLEstad(this.estadisticador.estadisticasLocales());
         interfaz.printLEstad("---");
+    }
+
+    private void imprimirEstadisticasGlobales() {
+        interfaz.printLEstad("Estadísticas globales");
+        interfaz.printLEstad(this.estadisticador.estadisticasGlobales());
+        interfaz.printLEstad("---");
+        interfaz.printLEstad("Fin");
     }
 
 }
