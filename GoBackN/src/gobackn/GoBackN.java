@@ -37,7 +37,7 @@ public class GoBackN {
     Interfaz interfaz;
     int numeroMsj;
     int frameEsperado;
-    public Estadisticador estadisticador; 
+    public Estadisticador estadisticador;
 
     public static void main(String[] args) {
         GoBackN gbn = GoBackN.getInstance();
@@ -56,7 +56,7 @@ public class GoBackN {
             JOptionPane.showMessageDialog(null, "Se canceló la simulación");
             System.exit(0);
         }
-        int modoLento = JOptionPane.showConfirmDialog(null, "¿Desea ver la simulación correr en modo lento?", "", JOptionPane.YES_NO_OPTION);        
+        int modoLento = JOptionPane.showConfirmDialog(null, "¿Desea ver la simulación correr en modo lento?", "", JOptionPane.YES_NO_OPTION);
         boolean lento = false;
         if (modoLento == JOptionPane.YES_OPTION) {
             lento = true;
@@ -107,7 +107,7 @@ public class GoBackN {
         }
         LlegaMsjA.getInstance().setHoraOcurrencia(0);
         actual = evento[0];
-        
+
         estadisticador = new Estadisticador();
     }
 
@@ -128,7 +128,7 @@ public class GoBackN {
                 //ejecutar el evento
                 actual.ejecutar();
                 //actualizar estado
-                actualizarEstado(modoLento, i);
+                actualizarEstado(veces, tTimer, tMax, modoLento, i);
             }
             //estadisticas de esta simulación
             interfaz.printT(this.estadisticador.estadisticasDelPrograma());
@@ -138,7 +138,7 @@ public class GoBackN {
 
     }
 
-    void actualizarEstado(boolean modoLento, int vez) {
+    void actualizarEstado(int veces, double tTimer, double tMax, boolean modoLento, int vez) {
         if (modoLento) {
             try {
                 Thread.sleep(666);
@@ -147,7 +147,9 @@ public class GoBackN {
             }
         }
         interfaz.limpiar();
-        interfaz.printL("Simulación: " + vez);
+        interfaz.printL("Simulación: " + vez + " de " + veces);
+        interfaz.printL("Tiempo total en segundos para correr cada vez la simulación: " + tMax);
+        interfaz.printL("El tiempo de espera en A para reenvío de un frame: " + tTimer);
         interfaz.printL("Reloj: " + reloj);
         interfaz.printL("Último evento procesado: " + actual.getNombre());
         interfaz.printL("---");
