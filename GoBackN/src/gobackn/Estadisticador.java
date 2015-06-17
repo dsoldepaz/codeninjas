@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package gobackn;
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -13,7 +14,15 @@ public class Estadisticador {
     public List<Double> tiempoTransmision;
     public List<Double> tiempoPermanencia;
     public List<Integer> tamanyoLista;
-    
+    public double tiempoUltimoAgregado ;
+    public List<Double> tiempoTamanyoLista;
+    public Estadisticador(){
+        tiempoTransmision = new ArrayList<>();
+        tiempoPermanencia= new ArrayList<>();
+        tamanyoLista= new ArrayList<>();
+        tiempoUltimoAgregado = 0;
+        tiempoTamanyoLista= new ArrayList<>();
+    }
     public double calcularPromedio(List l){
         double sum = 0;
         for(int i = 0; i < l.size() ; ++i){
@@ -21,8 +30,14 @@ public class Estadisticador {
         }
         return sum/l.size();
     }
- 
     
+    public double sum(List l){
+        double sum = 0;
+        for(int i = 0; i < l.size() ; ++i){
+            sum += Double.parseDouble(l.get(i).toString());
+        }
+        return sum;
+    }
     public double tiempoPromedioDeServicio(){
         return (calcularPromedio(tiempoPermanencia)-calcularPromedio(tiempoTransmision) );
     }
@@ -30,9 +45,17 @@ public class Estadisticador {
     public double eficiencia(){
         return calcularPromedio(tiempoTransmision)/(calcularPromedio(tiempoPermanencia)-calcularPromedio(tiempoTransmision));
     }
+    
+    public double tamanyoPromedioDeLaCola(){
+        double total = 0;
+        for(int i = 0; i < tamanyoLista.size(); ++i){
+            total = Double.parseDouble(tamanyoLista.get(i).toString())*tiempoTamanyoLista.get(i);
+        }
+        return total/sum(tiempoTamanyoLista);
+    }
     public String estadisticasDelPrograma(){
         String res = "";
-        res = "Tamaño promedio de la cola de A: " + calcularPromedio(tamanyoLista)+ "\n" +
+        res = "Tamaño promedio de la cola de A: " + (calcularPromedio(tamanyoLista))+ "\n" +
               "Tiempo promedio de Permacia de un mensaje en la cola: " + calcularPromedio(tiempoPermanencia)+ "\n" + 
               "Tiempo promedio de transmision: " + calcularPromedio(tiempoTransmision)+ "\n"+
                "Tiempo promedio de servicio: " + tiempoPromedioDeServicio()+ "\n"+

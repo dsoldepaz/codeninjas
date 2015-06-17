@@ -49,11 +49,12 @@ public class LlegaMsjA extends Evento {
 
         double Y = distribuidor.distribucionConvertirMensaje();
         double X = distribuidor.distribucionLlegaMensajeA();
-
+        master.estadisticador.tiempoUltimoAgregado = master.reloj;
         master.reloj = horaOcurrencia;
         ++master.numeroMsj;
         Mensaje nuevoMsj = new Mensaje(master.numeroMsj);
-
+        master.estadisticador.tamanyoLista.add(master.colaA.size() + master.ventana.size());
+        master.estadisticador.tiempoTamanyoLista.add(master.reloj - master.estadisticador.tiempoUltimoAgregado);
         if (master.ventana.size() >= 8) {
             master.colaA.add(nuevoMsj);
         } else {
@@ -74,13 +75,15 @@ public class LlegaMsjA extends Evento {
                         m.setEnviado(true);
                         m.setConError(false);
                     }
+                    
                     llegaFrameB.horaOcurrencia = master.reloj + X + Y + 2;
+                    m.tiempoDeTransferencia += llegaFrameB.horaOcurrencia - master.reloj; 
                     venceTimer.setHoraOcurrencia(master.getMinimumValue(master.timer));
                     master.colaB.add(m);
                 }
             }
         }
-       master.estadisticador.tamanyoLista.add(master.colaA.size() + master.ventana.size());
+       
         this.horaOcurrencia = master.reloj + X;
     }
 

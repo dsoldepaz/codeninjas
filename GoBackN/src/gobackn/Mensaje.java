@@ -15,7 +15,7 @@ public class Mensaje {
     private boolean enviado;
     private boolean conError;
     private double tiempoDeLlegada;
-    private double tiempoDeTransferencia;
+    public double tiempoDeTransferencia;
     
     Mensaje(int numero) {
         this.numero = numero;

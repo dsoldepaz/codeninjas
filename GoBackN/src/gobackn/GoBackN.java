@@ -131,6 +131,7 @@ public class GoBackN {
                 actualizarEstado(modoLento, i);
             }
             //estadisticas de esta simulación
+            interfaz.printT(this.estadisticador.estadisticasDelPrograma());
 
         }
         //imprimir estadisticas de todas

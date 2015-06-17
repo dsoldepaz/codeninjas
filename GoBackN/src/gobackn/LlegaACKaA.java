@@ -40,17 +40,20 @@ public class LlegaACKaA extends Evento {
     public void ejecutar() {
         master = GoBackN.getInstance();
         venceTimer = VenceTimer.getInstance();
-
+        master.estadisticador.tiempoUltimoAgregado = master.reloj;
         master.reloj = horaOcurrencia;
         horaOcurrencia = Double.MAX_VALUE;
         master.ultimoACKProcesadoPorA = master.ultimoACKRecibidoPorA;
-
+        master.estadisticador.tamanyoLista.add(master.colaA.size() + master.ventana.size());
+        master.estadisticador.tiempoTamanyoLista.add(master.reloj - master.estadisticador.tiempoUltimoAgregado);
+        
         if (!master.ventana.isEmpty()) {
             int m = master.ventana.get(0).getNumero();
             while (m < master.ultimoACKProcesadoPorA) {
                 
                 Mensaje r = master.ventana.remove(0);
                 master.estadisticador.tiempoPermanencia.add(master.reloj-r.getTiempoDeLlegada());
+                master.estadisticador.tiempoPermanencia.add(r.tiempoDeTransferencia);
                 //quitar tambien del enviador
                 while (master.colaEnviador.contains(r)) {
                     master.colaEnviador.remove(r);
@@ -66,6 +69,7 @@ public class LlegaACKaA extends Evento {
                 } else {
                     m = master.ultimoACKProcesadoPorA;
                 }
+                master.estadisticador.tamanyoLista.add( master.ventana.size() + master.colaA.size());
             }
         }
         venceTimer.setHoraOcurrencia(master.timer[0]);
