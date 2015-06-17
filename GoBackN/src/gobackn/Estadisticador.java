@@ -127,12 +127,12 @@ public class Estadisticador {
 
         //intervalo de confianza        
         double sumatoria = 0;
-        for (Double t : tiempoPermanencia) {
+        for (Double t : tiempoPermanenciaGlobal) {
             sumatoria += t - PromedioTiempoPermanenciaGlobal;
         }
-        double varianzaMuestral = Math.pow(2, sumatoria) / (tiempoPermanencia.size() - 1);
-        limIzquierdo = PromedioTiempoPermanenciaGlobal - 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanencia.size());
-        limDerecho = PromedioTiempoPermanenciaGlobal + 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanencia.size());
+        double varianzaMuestral = Math.pow(2, sumatoria) / (tiempoPermanenciaGlobal.size() - 1);
+        limIzquierdo = PromedioTiempoPermanenciaGlobal - 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
+        limDerecho = PromedioTiempoPermanenciaGlobal + 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
 
     }
 
