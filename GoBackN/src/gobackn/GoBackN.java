@@ -61,7 +61,7 @@ public class GoBackN {
         if (modoLento == JOptionPane.YES_OPTION) {
             lento = true;
         }
-        gbn.simular(Integer.parseInt(veces), Integer.parseInt(timer), Integer.parseInt(tMax), lento);// veces, timer, tiempo max, modo lento
+        gbn.simular(Integer.parseInt(veces), Double.parseDouble(timer), Double.parseDouble(tMax), lento);// veces, timer, tiempo max, modo lento
     }
 
     public static GoBackN getInstance() {

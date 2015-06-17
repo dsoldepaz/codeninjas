@@ -53,7 +53,7 @@ public class LlegaACKaA extends Evento {
                 
                 Mensaje r = master.ventana.remove(0);
                 master.estadisticador.tiempoPermanencia.add(master.reloj-r.getTiempoDeLlegada());
-                master.estadisticador.tiempoPermanencia.add(r.tiempoDeTransferencia);
+                master.estadisticador.tiempoTransmision.add(r.tiempoDeTransferencia);
                 //quitar tambien del enviador
                 while (master.colaEnviador.contains(r)) {
                     master.colaEnviador.remove(r);
