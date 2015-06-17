@@ -66,7 +66,7 @@ public class Estadisticador {
               "Tiempo promedio de Permacia de un mensaje en la cola: " +PromedioTiempoPermanencia + "\n" + 
               "Tiempo promedio de transmision: " + calcularPromedio(tiempoTransmision)+ "\n"+
                "Tiempo promedio de servicio: " + PromedioDeServicio+ "\n"+
-                "Eficiencia del sistema: " + Eficiencia+ "\n";
+                "Eficiencia del sistema: " + Eficiencia;
               
         return res;
     }

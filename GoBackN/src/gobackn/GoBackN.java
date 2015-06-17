@@ -128,13 +128,12 @@ public class GoBackN {
                 //ejecutar el evento
                 actual.ejecutar();
                 //actualizar estado
-                actualizarEstado(veces, tTimer, tMax, modoLento, i+1);
+                actualizarEstado(veces, tTimer, tMax, modoLento, i + 1);
             }
             //estadisticas de esta simulación
             this.estadisticador.calcularEstadisticas();
-            imprimirEstadisticasUnaSimulacion(i+1);
-            
-            
+            imprimirEstadisticasUnaSimulacion(i + 1);
+
         }
         //imprimir estadisticas de todas
 
@@ -148,10 +147,11 @@ public class GoBackN {
                 Logger.getLogger(GoBackN.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        interfaz.limpiarVar();        
-        interfaz.printLVar("Simulación: " + vez + " de " + veces);
+        interfaz.limpiarVar();
         interfaz.printLVar("Tiempo total en segundos para correr cada vez la simulación: " + tMax);
         interfaz.printLVar("El tiempo de espera en A para reenvío de un frame: " + tTimer);
+        interfaz.printLVar("---");
+        interfaz.printLVar("Simulación: " + vez + " de " + veces);
         interfaz.printLVar("Reloj: " + reloj);
         interfaz.printLVar("Último evento procesado: " + actual.getNombre());
         interfaz.printLVar("---");
@@ -251,7 +251,7 @@ public class GoBackN {
     }
 
     private void imprimirEstadisticasUnaSimulacion(int vez) {
-        interfaz.printLEstad("Simulación: "+vez);
+        interfaz.printLEstad("Simulación: " + vez);
         interfaz.printLEstad(this.estadisticador.estadisticasDelPrograma());
         interfaz.printLEstad("---");
     }
