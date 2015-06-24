@@ -40,6 +40,7 @@ public class GoBackN {
     public Estadisticador estadisticador;
 
     public static void main(String[] args) {
+        
         GoBackN gbn = GoBackN.getInstance();
         String veces = JOptionPane.showInputDialog("Número de veces que se va a correr la simulación:", "10");
         if (veces == null) {
