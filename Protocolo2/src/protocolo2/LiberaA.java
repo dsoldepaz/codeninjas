@@ -34,7 +34,7 @@ public class LiberaA extends Evento {
         master = Protocolo2.getInstance();
         distribuidor = Distribuidor.getInstance();
         llegaFrameB = LlegaFrameB.getInstance();
-        double Y = distribuidor.distribucionConvertirMensaje();
+        
         master.reloj = horaOcurrencia;       
         
        

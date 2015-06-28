@@ -1,13 +1,10 @@
 package protocolo2;
 
-
 public class LiberaEscritor extends Evento {
 
     private static LiberaEscritor instance = null;
     private Protocolo2 master;
-
     private Distribuidor distribuidor;
-    private LlegaFrameB llegaFrameB; 
 
     protected LiberaEscritor() {
 
@@ -35,12 +32,16 @@ public class LiberaEscritor extends Evento {
         master = Protocolo2.getInstance();
         distribuidor = Distribuidor.getInstance();
 
-        llegaFrameB = LlegaFrameB.getInstance();
-        
         master.reloj = horaOcurrencia;
-        double w = distribuidor.revisaFrame();
-       
+        double e = distribuidor.tiempoEscritura();
 
+        if (master.colaEscritor.isEmpty()) {
+            master.escritorLibre = true;
+        } else {            
+            this.horaOcurrencia = master.reloj + e;
+            master.escritorLibre = false;
+            master.colaB.remove(0);
+        }
     }
 
     @Override
