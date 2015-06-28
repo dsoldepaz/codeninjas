@@ -26,5 +26,9 @@ public class Distribuidor {
    public double revisaFrame(){
        return Math.sqrt(5*Math.random()+4);
    }
+
+    double tiempoEscritura() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
   
 }

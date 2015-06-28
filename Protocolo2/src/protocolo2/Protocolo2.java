@@ -13,6 +13,7 @@ public class Protocolo2 {
     public double tMaxSimulacion;
     List<Mensaje> colaA;
     List<Mensaje> colaB;
+    List<Mensaje> colaEscritor;
     List<Mensaje> HistorialRecibidosB;
     public boolean aLibre;
     public boolean escritorLibre;
@@ -59,6 +60,7 @@ public class Protocolo2 {
         escritorLibre = true;
         colaA = new ArrayList<>();        
         colaB = new ArrayList<>();
+        colaEscritor = new ArrayList<>();
         HistorialRecibidosB = new ArrayList<>();
 
         evento = new Evento[4];
@@ -152,6 +154,18 @@ public class Protocolo2 {
         interfaz.printLVar("}");
         interfaz.printLVar("Frame esperado: " + frameEsperado);
         interfaz.printLVar("Total de frames recibidos por B: " + HistorialRecibidosB.size());
+        
+        interfaz.printTVar("Cola del proceso escritor en B: { ");
+        for (int i = 0; i < 20; i++) {
+            try {
+                interfaz.printTVar("[" + colaEscritor.get(i).getNumero() + "] ");
+            } catch (IndexOutOfBoundsException e) {
+
+            }
+
+        }
+        interfaz.printLVar("}");
+        
         interfaz.printTVar("Historial de frames recibidos: { ");
         for (int i = HistorialRecibidosB.size() - 1; i > HistorialRecibidosB.size() - 21; i--) {
             try {
