@@ -5,6 +5,7 @@ public class LiberaEscritor extends Evento {
     private static LiberaEscritor instance = null;
     private Protocolo2 master;
     private Distribuidor distribuidor;
+    private LlegaFrameB llegaFrameB;
 
     protected LiberaEscritor() {
 
@@ -31,17 +32,23 @@ public class LiberaEscritor extends Evento {
     public void ejecutar() {
         master = Protocolo2.getInstance();
         distribuidor = Distribuidor.getInstance();
-
+        llegaFrameB = LlegaFrameB.getInstance();
         master.reloj = horaOcurrencia;
         double e = distribuidor.tiempoEscritura();
 
-        if (master.colaEscritor.isEmpty()) {
+        if (master.colaB.size() == 1 && llegaFrameB.horaOcurrencia != Double.MAX_VALUE) {
             master.escritorLibre = true;
-        } else {            
-            this.horaOcurrencia = master.reloj + e;
+            horaOcurrencia = Double.MAX_VALUE;
+        } else {
             master.escritorLibre = false;
-            master.colaB.remove(0);
-        }
+            if (master.colaB.isEmpty()) {
+                master.escritorLibre = true;
+                this.horaOcurrencia = Double.MAX_VALUE;
+            } else {
+                this.horaOcurrencia = master.reloj + e;
+            }
+            master.HistorialRecibidosB.add(master.colaB.remove(0));
+        }        
     }
 
     @Override
