@@ -1,6 +1,5 @@
 package protocolo2;
 
-
 public class LiberaA extends Evento {
 
     private static LiberaA instance = null;
@@ -34,10 +33,17 @@ public class LiberaA extends Evento {
         master = Protocolo2.getInstance();
         distribuidor = Distribuidor.getInstance();
         llegaFrameB = LlegaFrameB.getInstance();
-        
-        master.reloj = horaOcurrencia;       
-        
-       
+        double y = distribuidor.distribucionConvertirMensaje();
+        master.reloj = horaOcurrencia;
+
+        if (master.colaA.isEmpty()) {
+            master.aLibre = true;
+        } else {
+            this.horaOcurrencia = master.reloj + y;
+            llegaFrameB.horaOcurrencia = master.reloj + y + 1;
+            master.colaB.add(master.colaA.remove(0));
+        }
+
     }
 
     @Override

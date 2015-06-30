@@ -19,6 +19,10 @@ public class Distribuidor {
         return Zn() + 25;
     }
 
+    public double distribucionConvertirMensaje() {
+        return (-1.0 / 2.0) * Math.log(Math.random());
+    }
+
     private double Zn() {
         return Math.pow((-2.0 * Math.log(Math.random())), (1.0 / 2.0)) * Math.sin(2.0 * Math.PI * Math.random());
     }
