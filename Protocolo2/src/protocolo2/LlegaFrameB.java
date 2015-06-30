@@ -37,13 +37,20 @@ public class LlegaFrameB extends Evento {
         master.reloj = this.horaOcurrencia;
         
         if (master.escritorLibre) {
+            if(master.colaB.isEmpty()){
+                master.escritorLibre=true;
+                liberaEscritor.horaOcurrencia = Double.MAX_VALUE;
+            }
+            else{
+                liberaEscritor.horaOcurrencia = master.reloj + e + 0.25;
+            }
             liberaEscritor.horaOcurrencia = master.reloj + e;
             master.escritorLibre = false;
-            master.colaB.remove(0);
+            master.HistorialRecibidosB.add(master.colaB.remove(0));
         } else {
             master.colaEscritor.add(master.colaB.remove(0));
         }
-        
+        horaOcurrencia = Double.MAX_VALUE;        
     }
     
     @Override
