@@ -38,6 +38,7 @@ public class LiberaA extends Evento {
 
         if (master.colaA.isEmpty()) {
             master.aLibre = true;
+            this.horaOcurrencia = Double.MAX_VALUE;
         } else {
             this.horaOcurrencia = master.reloj + y;
             llegaFrameB.horaOcurrencia = master.reloj + y + 1;
