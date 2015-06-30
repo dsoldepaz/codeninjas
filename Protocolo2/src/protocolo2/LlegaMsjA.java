@@ -47,7 +47,7 @@ public class LlegaMsjA extends Evento {
         double x = distribuidor.distribucionLlegaMensajeA();
         master.reloj = horaOcurrencia;
         
-        this.horaOcurrencia=distribuidor.distribucionLlegaMensajeA();
+        this.horaOcurrencia= master.reloj+distribuidor.distribucionLlegaMensajeA();
 
         if (master.aLibre) {
             master.aLibre = false;
