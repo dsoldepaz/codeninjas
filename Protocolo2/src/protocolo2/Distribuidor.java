@@ -16,7 +16,11 @@ public class Distribuidor {
     }
 
     public double distribucionLlegaMensajeA() {
-        return 0.001*Zn() + 8;
+        double z =0.0316227766016838*Zn() + 2;
+        while(z < 0){
+            z = 0.0316227766016838*Zn() + 2;
+        }
+        return z;
     }
 
     private double Zn() {
@@ -24,7 +28,8 @@ public class Distribuidor {
     }
 
     public double distribucionConvertirMensaje() {
-        return (-1.0 / 2.0) * Math.log(Math.random());
+        double z = -2.0 * Math.log(1-Math.random());
+        return z;
     }
 
     double tiempoEscritura() {

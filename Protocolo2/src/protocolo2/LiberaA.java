@@ -40,8 +40,10 @@ public class LiberaA extends Evento {
             master.aLibre = true;
             this.horaOcurrencia = Double.MAX_VALUE;
         } else {
-            this.horaOcurrencia = master.reloj + y;
-            llegaFrameB.horaOcurrencia = master.reloj + y + 1;
+            this.horaOcurrencia = master.reloj + y + 1;
+            llegaFrameB.horaOcurrencia = master.reloj + y + 1 + 1;
+            master.estadisticador.tiempoTamanyoLista.add(master.reloj - master.estadisticador.tiempoUltimoAgregado);
+            master.estadisticador.tiempoUltimoAgregado = master.reloj;
             master.colaB.add(master.colaA.remove(0));
         }
 

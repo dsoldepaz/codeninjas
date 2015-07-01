@@ -46,6 +46,7 @@ public class LiberaEscritor extends Evento {
                 this.horaOcurrencia = Double.MAX_VALUE;
             } else {
                 this.horaOcurrencia = master.reloj + e;
+                master.estadisticador.tiempoPermanencia.add(master.reloj - master.colaB.get(0).tiempoDeLlegada);
                 master.HistorialRecibidosB.add(master.colaB.remove(0));
             }
 

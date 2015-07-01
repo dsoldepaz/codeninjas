@@ -5,14 +5,14 @@ public class Mensaje {
 
     private final int numero;
     private boolean enviado;
-    private double tiempoDeLlegada;
-    public double tiempoDeTransferencia;
+    public double tiempoDeLlegada;
+    public double tiempoDePermanencia;
     
     Mensaje(int numero) {
         this.numero = numero;
         enviado = false;
         tiempoDeLlegada = 0;
-        tiempoDeTransferencia =0;
+        tiempoDePermanencia =0;
     }
 
     public int getNumero() {
@@ -36,7 +36,7 @@ public class Mensaje {
     }
     
     public void setTiempoTransferencia(double t){
-        this.tiempoDeTransferencia = t;
+        this.tiempoDePermanencia = t;
     }
 
 }

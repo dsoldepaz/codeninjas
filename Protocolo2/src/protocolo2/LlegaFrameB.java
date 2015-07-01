@@ -42,14 +42,13 @@ public class LlegaFrameB extends Evento {
                 liberaEscritor.horaOcurrencia = Double.MAX_VALUE;
             }
             else{
-                liberaEscritor.horaOcurrencia = master.reloj + e + 0.25;
+                liberaEscritor.horaOcurrencia = master.reloj + e;
             }
-            liberaEscritor.horaOcurrencia = master.reloj + e;
+         
             master.escritorLibre = false;
+            master.estadisticador.tiempoPermanencia.add(master.reloj - master.colaB.get(0).tiempoDeLlegada);
             master.HistorialRecibidosB.add(master.colaB.remove(0));
-        } else {
-            master.colaEscritor.add(master.colaB.remove(0));
-        }
+        } 
         horaOcurrencia = Double.MAX_VALUE;        
     }
     
