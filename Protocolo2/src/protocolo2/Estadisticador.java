@@ -75,8 +75,7 @@ public class Estadisticador {
 
     public String estadisticasLocales() {
         String res = "Tamaño promedio de la cola de A: " + PromedioTamanyo + "\n"
-                + "Tiempo promedio de permanencia de un mensaje en la cola: " + PromedioTiempoPermanencia + "\n"
-                + "Tiempo promedio de transmision: " + calcularPromedio(tiempoTransmision) + "\n";
+                + "Tiempo promedio de permanencia de un mensaje en la cola: " + PromedioTiempoPermanencia + "\n";
 
         return res;
     }

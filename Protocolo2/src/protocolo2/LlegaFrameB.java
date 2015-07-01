@@ -35,20 +35,23 @@ public class LlegaFrameB extends Evento {
         
         double e = distribuidor.tiempoEscritura();
         master.reloj = this.horaOcurrencia;
-        
+        Mensaje m = master.colaB.remove(0);
         if (master.escritorLibre) {
-            if(master.colaB.isEmpty()){
-                master.escritorLibre=true;
-                liberaEscritor.horaOcurrencia = Double.MAX_VALUE;
+            master.escritorLibre = false;
+            liberaEscritor.horaOcurrencia = master.reloj + e;
+            master.estadisticador.tiempoPermanencia.add(master.reloj - m.tiempoDeLlegada);
+            master.HistorialRecibidosB.add(m);
+        } 
+        else{
+            master.colaEscritor.add(m);
+        }
+        
+        if(master.colaB.isEmpty()){
+                this.horaOcurrencia = Double.MAX_VALUE;
             }
             else{
-                liberaEscritor.horaOcurrencia = master.reloj + e;
+                this.horaOcurrencia= master.colaB.get(0).horaArriboB;
             }
-         
-            master.escritorLibre = false;
-            master.estadisticador.tiempoPermanencia.add(master.reloj - master.colaB.get(0).tiempoDeLlegada);
-            master.HistorialRecibidosB.add(master.colaB.remove(0));
-        } 
         horaOcurrencia = Double.MAX_VALUE;        
     }
     

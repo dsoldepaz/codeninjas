@@ -35,22 +35,17 @@ public class LiberaEscritor extends Evento {
         llegaFrameB = LlegaFrameB.getInstance();
         master.reloj = horaOcurrencia;
         double e = distribuidor.tiempoEscritura();
-
-        if (master.colaB.size() == 1 && llegaFrameB.horaOcurrencia != Double.MAX_VALUE) {
+        if(master.colaEscritor.isEmpty()){
+            this.horaOcurrencia = Double.MAX_VALUE;
             master.escritorLibre = true;
-            horaOcurrencia = Double.MAX_VALUE;
-        } else {
+        }
+        else{
+            Mensaje m = master.colaEscritor.remove(0);
             master.escritorLibre = false;
-            if (master.colaB.isEmpty()) {
-                master.escritorLibre = true;
-                this.horaOcurrencia = Double.MAX_VALUE;
-            } else {
-                this.horaOcurrencia = master.reloj + e;
-                master.estadisticador.tiempoPermanencia.add(master.reloj - master.colaB.get(0).tiempoDeLlegada);
-                master.HistorialRecibidosB.add(master.colaB.remove(0));
-            }
-
-        }        
+            this.horaOcurrencia = master.reloj + e;
+            master.estadisticador.tiempoPermanencia.add(master.reloj - m.tiempoDeLlegada);
+            master.HistorialRecibidosB.add(m);
+        }
     }
 
     @Override

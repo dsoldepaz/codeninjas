@@ -37,11 +37,13 @@ public class LlegaMsjA extends Evento {
         liberaA = LiberaA.getInstance();
         
         master.reloj = this.horaOcurrencia;
-        master.estadisticador.tiempoUltimoAgregado = master.reloj;
+        
+        
         double tam = (double) master.colaA.size();
         master.estadisticador.tamanyoLista.add(tam);
         master.estadisticador.tiempoTamanyoLista.add(master.reloj - master.estadisticador.tiempoUltimoAgregado);
 
+        master.estadisticador.tiempoUltimoAgregado = master.reloj;
         ++master.numeroMsj;
         Mensaje nuevoMsj = new Mensaje(master.numeroMsj);
         double y = distribuidor.distribucionConvertirMensaje();
@@ -51,14 +53,15 @@ public class LlegaMsjA extends Evento {
         master.colaA.add(nuevoMsj);
         if (master.aLibre) {
             master.aLibre = false;
+            Mensaje m = master.colaA.remove(0);
             liberaA.horaOcurrencia = master.reloj + y + 1;
-            llegaFrameB.horaOcurrencia = master.reloj + y + 1 + 1;
+            m.horaArriboB = master.reloj + y + 1 + 1;
             master.estadisticador.tamanyoLista.add(((double)master.colaA.size()));
             master.estadisticador.tiempoTamanyoLista.add(master.reloj-master.estadisticador.tiempoUltimoAgregado);
             master.estadisticador.tiempoUltimoAgregado = master.reloj;
-            master.colaB.add(master.colaA.remove(0));
+            master.colaB.add(m);
+            llegaFrameB.horaOcurrencia = master.colaB.get(0).horaArriboB; 
         }
-
     }
 
     @Override

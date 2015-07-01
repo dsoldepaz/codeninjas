@@ -6,13 +6,13 @@ public class Mensaje {
     private final int numero;
     private boolean enviado;
     public double tiempoDeLlegada;
-    public double tiempoDePermanencia;
+    public double horaArriboB;
     
     Mensaje(int numero) {
         this.numero = numero;
         enviado = false;
         tiempoDeLlegada = 0;
-        tiempoDePermanencia =0;
+        horaArriboB =0;
     }
 
     public int getNumero() {
@@ -34,9 +34,4 @@ public class Mensaje {
     public double getTiempoDeLlegada(){
        return this.tiempoDeLlegada;
     }
-    
-    public void setTiempoTransferencia(double t){
-        this.tiempoDePermanencia = t;
-    }
-
 }
