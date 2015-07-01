@@ -3,7 +3,6 @@ package protocolo2;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Estadisticador {
 
     //Locales
@@ -103,8 +102,15 @@ public class Estadisticador {
             sumatoria += t - PromedioTiempoPermanenciaGlobal;
         }
         double varianzaMuestral = Math.pow(2, sumatoria) / (tiempoPermanenciaGlobal.size() - 1);
-        limIzquierdo = PromedioTiempoPermanenciaGlobal - 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
-        limDerecho = PromedioTiempoPermanenciaGlobal + 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
+        if (tamanyoListaGlobal.size() <= 10) {
+            //intervalo de confianza t-student 
+            limIzquierdo = PromedioTiempoPermanenciaGlobal - 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
+            limDerecho = PromedioTiempoPermanenciaGlobal + 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
+        } else {
+            //intervalo de confianza normal   
+            limIzquierdo = PromedioTiempoPermanenciaGlobal - 1.96 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
+            limDerecho = PromedioTiempoPermanenciaGlobal + 1.96 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
+        }
 
     }
 
