@@ -90,7 +90,7 @@ public class Estadisticador {
 
     }
 
-    void calcularEstadisticasGlobales() {
+    void calcularEstadisticasGlobales(int veces) {
         //promedios globales
         PromedioTamanyoGlobal = calcularPromedio(tamanyoListaGlobal);
         PromedioTiempoPermanenciaGlobal = calcularPromedio(tiempoPermanenciaGlobal);
@@ -101,12 +101,14 @@ public class Estadisticador {
             sumatoria += t - PromedioTiempoPermanenciaGlobal;
         }
         double varianzaMuestral = Math.pow(2, sumatoria) / (tiempoPermanenciaGlobal.size() - 1);
-        if (tamanyoListaGlobal.size() <= 10) {
+        if (veces <= 10) {
             //intervalo de confianza t-student 
+            System.out.println("t");
             limIzquierdo = PromedioTiempoPermanenciaGlobal - 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
             limDerecho = PromedioTiempoPermanenciaGlobal + 2.26 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
         } else {
-            //intervalo de confianza normal   
+            //intervalo de confianza normal 
+            System.out.println("normal");
             limIzquierdo = PromedioTiempoPermanenciaGlobal - 1.96 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
             limDerecho = PromedioTiempoPermanenciaGlobal + 1.96 * Math.sqrt(varianzaMuestral / tiempoPermanenciaGlobal.size());
         }

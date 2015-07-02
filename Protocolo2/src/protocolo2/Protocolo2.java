@@ -106,7 +106,7 @@ public class Protocolo2 {
 
         }
         //imprimir estadisticas de todas
-        this.estadisticador.calcularEstadisticasGlobales();
+        this.estadisticador.calcularEstadisticasGlobales(veces);
         imprimirEstadisticasGlobales();
 
     }
